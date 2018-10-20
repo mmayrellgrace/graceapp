@@ -3,26 +3,25 @@ import { View, Text, StyleSheet, TouchableOpacity, Animated,
     KeyboardAvoidingView, Keyboard, ScrollView, Dimensions } from 'react-native';
 import CustomButton from '../../components/UI/ButtonWithIcon';
 import ContactList from '../../components/Lists/ContactList';
+import ActionButton from '../../components/UI/ActionButtonCircle';
+import Heading from '../../components/UI/HeadingText';
+
 
 class EmergencyContacts extends Component {
+    
 
     state = {
         contactsLoaded: false,
         removeAnim: new Animated.Value(1),
         addAnim: new Animated.Value(0),
+        contacts: '',
+
     };
 
     constructor (props) {
         super(props);
     }
 
-    onNavigatorEvent = event => {
-        if(event.type === "NavBarButtonPress") {
-            if (event.id === "drawerToggle") {
-               
-            }
-        }
-    }
 
     contactsLoadedHandler = () => {
             Animated.timing(this.state.addAnim, {
@@ -44,7 +43,6 @@ class EmergencyContacts extends Component {
             this.contactsLoadedHandler();
         });
     }
-    itemPressed = () => {}
 
     itemSelectedHandler = key => {
         const selectContact = this.props.contacts.find(item => {
@@ -82,14 +80,22 @@ class EmergencyContacts extends Component {
         >
             <View style={styles.listContainer}>
                 <ScrollView>
-                <CustomButton color="#602A7A" style={{padding:2, borderRadius:50,}} onPress={this.contactsSearchHandler}>Add Contact</CustomButton>
+                <View style={{alignItems:"center",marginBottom:4,}}>
+                    <Heading heading="In Case of Emergeny, Press Alert Button" />
+                </View>
                 <View style={styles.list}>
                         <ContactList contacts={this.props.contacts} onItemSelected={this.itemSelectedHandler} />
                 </View>
                 
                 </ScrollView>  
                 <View style={styles.btnActionMenu}>
-          
+                    <ActionButton elevation={5} 
+                                size={25}
+                                style={{elevation:1}}
+                                color="white" 
+                                background="#602A7A" 
+                                icon="add" 
+                                onpress={(item) => item} />
                 </View>
             </View> 
             </Animated.View>

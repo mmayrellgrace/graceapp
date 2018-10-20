@@ -8,8 +8,9 @@ import LoginScreen from './screens/Login/LoginScreen';
 import ForgotPasswordScreen from './screens/Login/ForgotPassword';
 import AuthLoadingScreen from './screens/Auth/AuthLoadingScreen';
 import EmergencyContacts from './screens/EmergencyContacts/EmergencyContacts';
+import EmergencyContactDetails from './screens/EmergencyContacts/EmergencyContactDetails';
 
-const AppStack = createStackNavigator({ Main: MainScreen, Emergency: EmergencyContacts, });
+const AppStack = createStackNavigator({ Main: MainScreen, Emergency: EmergencyContacts, EmergencyDetails: EmergencyContactDetails });
 const RegisterStack = createStackNavigator({other: MainScreen});
 const AuthStack = createStackNavigator({ Login:LoginScreen, Signup: SignupScreen, ForgotPassword: ForgotPasswordScreen });
 

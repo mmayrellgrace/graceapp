@@ -7,7 +7,7 @@ const buttonWithIcon = props => (
         <View style={styles.container}>
             <View style={[styles.button, {backgroundColor:props.background}, props.style, props.disabled ? styles.disabled : null]}>
                 <View style={{marginRight:8,}}><MaterialIcons size={30} name={props.icon} color={props.color} /></View>
-                <Text style={[styles.text, {color:props.color}]}>{props.children}</Text>
+                <Text style={[styles.text, {color:props.color}]}>{props.label}</Text>
             </View>
         </View>
     </TouchableOpacity>

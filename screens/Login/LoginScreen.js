@@ -62,9 +62,11 @@ _signInAsync = async () => {
 
 loginHandler = () => {
     this.props.navigation.navigate('App');
+    /*pass options if inputs where updated otherwise pass props of user*/
 };
 signupHandler = () => {
     this.props.navigation.push('Signup');
+    /*include options to capture inputs*/
 };
 forgotpasswordHandler = () => {
     this.props.navigation.push('ForgotPassword');
@@ -211,6 +213,7 @@ updateInputState = (key, value) => {
                     <View style={[styles.buttons]}>
                         <CustomButton 
                                 style={styles.linkText}
+                                buttonText={{textDecorationLine:"underline",textDecorationStyle:"solid",textDecorationColor:"white"}}
                                 color="white" 
                                 size={13}
                                 background="transparent" 
@@ -223,6 +226,7 @@ updateInputState = (key, value) => {
                     <View style={[styles.buttons]}>
                         <CustomButton 
                                 style={styles.linkText}
+                                buttonText={{textDecorationLine:"underline",textDecorationStyle:"solid",textDecorationColor:"white"}}
                                 color="white" 
                                 size={13}
                                 background="transparent" 

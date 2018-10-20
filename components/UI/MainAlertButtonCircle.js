@@ -8,7 +8,7 @@ const actionButton = props => (
     <TouchableOpacity onPress={props.onPress}>
         <View style={styles.container}>
             <View style={[styles.button, {backgroundColor:props.background}, props.style, props.disabled ? styles.disabled : null]}>
-                <MaterialIcons size={props.size} name={props.icon} color={props.color} />
+                <MaterialIcons size={props.size} name={props.icon} color={props.disabled ? styles.disabledIcon : props.color} />
             </View>
         </View>
     </TouchableOpacity>
@@ -26,6 +26,12 @@ const styles = StyleSheet.create({
         height:250,
         borderRadius:125, 
     },
+    disabledIcon: {
+        color:"#CCC",
+    },
+    disabled: {
+        backgroundColor:"#DDD",
+    }
 });
 
 export default actionButton;
