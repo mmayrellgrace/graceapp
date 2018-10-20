@@ -4,7 +4,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { white } from 'ansi-colors';
 
 const Contact = (props) => (
-    <TouchableOpacity onPress={props.onItemPressed}>
+    <TouchableOpacity onPress={props.onItemSelected}>
         <View elevation={5} style={[styles.listItem, {elevation:2, position:'relative',height:180, marginTop:20,}]}>
             <View elevation={1} style={{position:'absolute',
                                         marginTop:-20,  
@@ -26,7 +26,7 @@ const Contact = (props) => (
                             backgroundColor:"#f6f6f6",
                             borderBottomLeftRadius:6,borderBottomRightRadius:6}}>
                     <View style={[styles.iconTextContainer, ]}> 
-                        <TouchableOpacity onPress={props.onPressTest}>
+                        <TouchableOpacity onPress={props.onItemTest}>
                         <View style={styles.buttonContainer}>
                         <View style={{marginRight:4,}}>
                             <MaterialIcons size={14} name="error" color={props.color} />
@@ -37,7 +37,7 @@ const Contact = (props) => (
                     </View>
                    
                     <View style={[styles.iconTextContainer, {justifyContent:"flex-end",}]}> 
-                        <TouchableOpacity onPress={props.onPressDelete}>
+                        <TouchableOpacity onPress={props.onItemDeleted}>
                         <View style={styles.buttonContainer}>
                         <View style={{marginRight:4,}}>
                             <MaterialIcons size={14} name="delete" color={props.color} />

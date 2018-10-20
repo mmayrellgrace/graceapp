@@ -16,23 +16,6 @@ class MainScreen extends Component {
         contactsLoaded: false,
         removeAnim: new Animated.Value(1),
         addAnim: new Animated.Value(0),
-
-        contacts: [
-        {key:'1', name: 'John Doe', 
-        profileImage:require('../../assets/profile/guyimage.png'),  
-        phone:"405-445-6678", email:"doeJ@emailaddress.com", 
-        relationship:"relative"},
-
-        {key:'2', name: 'Jane Frazle', 
-        profileImage:require('../../assets/profile/girlimage.png'),
-        phone:"405-432-111", email:"doeJ@emailaddress.com", 
-        relationship:"relative"},
-
-        {key:'3', name: 'Jessica Payne', 
-        profileImage:require('../../assets/profile/girlimage2.png'),  
-        phone:"555-555-2378", email:"doeJ@emailaddress.com", 
-        relationship:"relative"}
-        ]
     };
 
     constructor (props) {
@@ -98,56 +81,56 @@ class MainScreen extends Component {
         return (
 
             <View style={styles.listContainer}>
+                 <View style={styles.btnAlertDisable}>
+                    <View style={{flexDirection:"row",left:-10}}>
+                    <CustomButton 
+                        icon={this.state.disableAlert ? "add-alert" : "notifications-off"} 
+                        label={this.state.disableAlert ? "enable" : "disable"} 
+                        style={{borderColor:"#CCC", borderWidth:1, borderRadius:0}} 
+                        color={this.state.disableAlert ? "#35B5AF" : "grey"} 
+
+                        onPress={this.disableAlertClick}/>
+                    
+                    </View>
+                </View>
                 <View style={{alignItems:"center",marginBottom:4,}}>
                     <Heading heading={"In Case of Emergeny, \nPress Alert Button"} style={{textAlign:"center"}} />
                 </View>
-                <View style={styles.btnAlertDisable}>
-                   
-                </View>
                 <View style={{padding:20,alignItems:"center",justifyContent:"center"}}>
-                <MainAlertButton size={80}
+                <MainAlertButton size={65}
                                 color="pink" 
                                 background="red" 
-                                icon="warning" 
+                                icon={this.state.disableAlert ? "notifications-off" : "add-alert"} 
                                 onpress={(item) => item}
                                 disabled={this.state.disableAlert}
                             />
                  </View>
             <View>
-                <View style={{flexDirection:"row"}}>
-                <CustomButton icon="alarm" 
-                    label={this.state.disableAlert ? "enable" : "disable"} 
-                    style={{}} color="grey" 
-                    onPress={this.disableAlertClick}/>
-                    <CustomButton icon="group" 
-                    label="contacts" 
-                    style={{}} color="white" background="#35B5AF" 
-                    onPress={this.emergencyContactsGo}/>
-                </View>
+              
             </View>
 
                 <View style={styles.btnActionMenu}>
                 <View style={{flexDirection:"row"}}>
                 <ActionButton elevation={5} 
-                                size={25}
-                                style={{marginRight:20}}
-                                color="white" 
-                                background="#602A7A" 
-                                icon="phone" 
-                                onpress={(item) => item} />
-                 <ActionButton elevation={5} 
-                                size={25}
-                                style={{marginRight:20}}
-                                color="white" 
-                                background="#602A7A" 
-                                icon="group" 
-                                onpress={(item) => item} />
-                     <ActionButton elevation={5} 
-                                size={25}
+                                size={20}
+                                style={{marginRight:30}}
                                 color="white" 
                                 background="#602A7A" 
                                 icon="share" 
-                                onpress={(item) => item} />
+                                onPress={(item) => item} />
+                <ActionButton elevation={5} 
+                                size={20}
+                                style={{marginRight:30}}
+                                color="white" 
+                                background="#602A7A" 
+                                icon="group" 
+                                onPress={this.emergencyContactsGo} />
+                <ActionButton elevation={5} 
+                                size={25}
+                                color="white" 
+                                background="#602A7A" 
+                                icon="phone" 
+                                onPress={(item) => item} />
                 </View>
                 </View>
             </View> 
@@ -160,7 +143,6 @@ const styles = StyleSheet.create({
         position:"relative",
         padding:10,
         flex:1,
-        width:"100%",
         justifyContent:"center",
     },
     list:{

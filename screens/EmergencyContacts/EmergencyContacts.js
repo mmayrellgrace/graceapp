@@ -14,6 +14,22 @@ class EmergencyContacts extends Component {
         contactsLoaded: false,
         removeAnim: new Animated.Value(1),
         addAnim: new Animated.Value(0),
+        contacts: [
+            {key:'1', name: 'John Doe', 
+            profileImage:require('../../assets/profile/guyimage.png'),  
+            phone:"405-445-6678", email:"doeJ@emailaddress.com", 
+            relationship:"relative"},
+    
+            {key:'2', name: 'Jane Frazle', 
+            profileImage:require('../../assets/profile/girlimage.png'),
+            phone:"405-432-111", email:"doeJ@emailaddress.com", 
+            relationship:"relative"},
+    
+            {key:'3', name: 'Jessica Payne', 
+            profileImage:require('../../assets/profile/girlimage2.png'),  
+            phone:"555-555-2378", email:"doeJ@emailaddress.com", 
+            relationship:"relative"}
+            ]
     };
 
     constructor (props) {
@@ -42,10 +58,20 @@ class EmergencyContacts extends Component {
     }
 
     itemSelectedHandler = key => {
-        const selectContact = this.props.contacts.find(item => {
+        const selectedContact = this.state.contacts.filter(item => {
             return item.key === key;
-
         });
+        
+        alert(JSON.Stringify(selectedContact));
+    }
+
+    itemDeletedHandler = key => {
+        const deleteContact = this.state.contacts.filter(item => {
+            return item.key !== key;
+        });
+        this.setState({
+            contacts: deleteContact
+        })
     }
 
     modalClosedHandler = () => {
@@ -53,6 +79,12 @@ class EmergencyContacts extends Component {
           showModal: false
         });
       }
+
+    emergencyContactsGo = () => {
+        this.props.navigation.push('Emergency', {
+            contacts:this.state.contacts,
+        });
+    }
 
     render () {
         const { params } = this.props.navigation.state;
@@ -65,7 +97,7 @@ class EmergencyContacts extends Component {
                     <Heading heading="Emergency Contacts" />
                 </View>
                 <View style={styles.list}>
-                        <ContactList contacts={paramContacts} onItemSelected={this.itemSelectedHandler} />
+                    <ContactList contacts={this.state.contacts} onItemSelected={this.itemSelectedHandler} onItemDeleted={this.itemDeletedHandler} />
                 </View>
                 
                 </ScrollView>  
@@ -95,36 +127,19 @@ const styles = StyleSheet.create({
     list:{
         flex:1,
     },
-    barcode:{
+    btnActionMenu: {
         position:"absolute",
-        top:300,
-        right:10,
-        width:60,
-        height:80,
-        zIndex:400,
-    },
-    barcodeContainer:{
-        position:"relative",
-
-    },
+        zIndex:10, 
+        margin:10,
+        right: 0, 
+        bottom: 0, 
+        padding:10, 
+      },
     preview: {
         flex: 1,
         justifyContent: 'flex-end',
         alignItems: 'center'
       },
-
-      btnActionMenu: {
-        position:"absolute",
-        elevation:4,
-        zIndex:10, 
-        right: 0, 
-        bottom: 0, 
-        padding:10, 
-        shadowColor: '#999',
-        shadowOpacity: 0.8,
-        shadowRadius: 10,
-       
-      }
 });
 
 export default EmergencyContacts;
