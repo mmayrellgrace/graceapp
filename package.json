@@ -6,7 +6,8 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "postinstall": "rndebugger-open"
   },
   "dependencies": {
     "expo": "^30.0.1",
@@ -18,5 +19,8 @@
     "assets": [
       "app/fonts"
     ]
+  },
+  "devDependencies": {
+    "react-native-debugger-open": "^0.3.17"
   }
 }

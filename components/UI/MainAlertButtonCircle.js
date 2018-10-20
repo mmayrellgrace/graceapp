@@ -20,10 +20,11 @@ const styles = StyleSheet.create({
     button: {  
         alignItems:"center", 
         justifyContent:"center",
-        borderRadius:100, 
+
         elevation:3,
-        width:200,
-        height:200,
+        width:250,
+        height:250,
+        borderRadius:125, 
     },
 });
 

@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Animated, 
     KeyboardAvoidingView, Keyboard, ScrollView, Dimensions } from 'react-native';
-import CustomButton from '../../components/UI/ButtonWithIcon';
-import ContactList from '../../components/Lists/ContactList';
-import DefaultInput from '../../components/UI/DefaultInput';
 import Heading from '../../components/UI/HeadingText';
 import LoginScreen from '../Login/LoginScreen';
 import ActionButton from '../../components/UI/ActionButtonCircle';
@@ -88,15 +85,14 @@ class MainScreen extends Component {
 
             <View style={styles.listContainer}>
                 <ScrollView>
-                <LoginScreen />
                 <View style={{alignItems:"center",marginBottom:4,}}>
                     <Heading heading="Emergency Contacts" />
                 </View>
                 <View style={{padding:20,alignItems:"center",justifyContent:"center"}}>
-               <MainAlertButton size={50}
+               <MainAlertButton size={80}
                                 color="pink" 
                                 background="red" 
-                                icon="alert" 
+                                icon="warning" 
                                 onpress={(item) => item}
                                 />
                         </View>
@@ -119,10 +115,9 @@ const styles = StyleSheet.create({
     listContainer: {
         position:"relative",
         padding:10,
-        backgroundColor:"#E8E8E8",
         flex:1,
         width:"100%",
-        justifyContent:"space-between",
+        justifyContent:"center",
     },
     list:{
         flex:1,

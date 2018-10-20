@@ -1,17 +1,19 @@
 
   import React, { Component } from 'react';
   import { View, Text, StyleSheet, TouchableOpacity, Animated, 
-      KeyboardAvoidingView, Keyboard, TouchableWithoutFeedback, ScrollView, Dimensions } from 'react-native';
+      KeyboardAvoidingView, Keyboard, Image, TouchableWithoutFeedback, AsyncStorage, ScrollView, Dimensions } from 'react-native';
   import CustomButton from '../../components/UI/ButtonWithBackground';
-  import ContactList from '../../components/Lists/ContactList';
   import DefaultInput from '../../components/UI/DefaultInput';
   import Heading from '../../components/UI/HeadingText';
-  import validate from '../utils/validation';
-  import { MaterialIcons } from '@expo/vector-icons';
+ import { MaterialIcons } from '@expo/vector-icons';
+  import Logo from '../../assets/Logo-Grace.png';
 
   class LoginScreen extends Component {
     
     state = {
+        navigationOptions:{
+            header:null,
+        },
         viewMode: Dimensions.get('window').height > 800 ? "portrait" : "landscape",
         controls: {
             email: {
@@ -43,9 +45,30 @@
         Dimensions.addEventListener("change", this.updateStyles);
     }
     
+      // Fetch the token from storage then navigate to our appropriate place
+      _bootstrapAsync = () => {
+        //const userToken = await AsyncStorage.getItem('userToken');
+            this.props.navigation.navigate('App');//userToken ? 'App' : 'Auth');
+      };
+    
 componentWillUnmount() {
     Dimensions.removeEventListener("change", this.updateStyles);
 }
+
+_signInAsync = async () => {
+    //await AsyncStorage.setItem('userToken', 'abc');
+    
+};
+
+loginHandler = () => {
+    this.props.navigation.navigate('App');
+};
+signupHandler = () => {
+    this.props.navigation.push('Signup');
+};
+forgotpasswordHandler = () => {
+    this.props.navigation.push('ForgotPassword');
+};
 
 updateInputState = (key, value) => {
     let connectedValue = {};
@@ -64,24 +87,25 @@ updateInputState = (key, value) => {
             equalTo: value
         };
 
-    }
+    };
+
 
     this.setState(prevState => {
         return {
             controls: {
                 ...prevState.controls,
-                confirmPassword: {
+                /*confirmPassword: {
                     ...prevState.controls.confirmPassword,
                     valid: key === 'password' ? validate(
                         prevState.controls.confirmPassword.value, 
                         prevState.controls.confirmPassword.validationRules, 
                         connectedValue
                     ) : prevState.controls.confirmPassword.valid
-                },
+                },*/
                 [key]: {
                     ...prevState.controls[key],
                     value: value,
-                    valid: validate(value, prevState.controls[key].validationRules, connectedValue),
+                    //valid: validate(value, prevState.controls[key].validationRules, connectedValue),
                     touched: true,
                 }
             },
@@ -90,14 +114,23 @@ updateInputState = (key, value) => {
     });
 }
     render() {
-        return (
 
-            <View style={styles.listContainer}>
-                <View style={{alignItems:"center",marginBottom:4,}}>
-                    <Heading heading="Login" />
-                </View>
+        let logoImage = <View style={{alignItems:"center",marginBottom:4,}}>
+                            <Heading heading="Login" />
+                        </View>;
+        if(this.state.viewMode === "portrait") {
+                    logoImage = (
+                        <View style={{width:"100%",alignItems:"center"}}>
+                            <Image source={Logo} resizeMode="contain" style={{width:140, height:120}}/> 
+                        </View>);
+        }
+        return (
+            <ScrollView>
+
+            <View style={[styles.container, {justifyContent:"space-around",}]}>
+                {logoImage}
                 <View>
-                <KeyboardAvoidingView style={styles.container} behavior="padding">
+                <KeyboardAvoidingView behavior="padding">
                
                 <View style={{width:"100%",flex:1,justifyContent:"center"}}>
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -111,7 +144,7 @@ updateInputState = (key, value) => {
                                         placeholderTextColor="#CCC"
                                         value={this.state.controls.email.value}
                                         onChangeText={(val) => this.updateInputState('email', val)}
-                                        valid={this.state.controls.email.valid}
+                                       // valid={this.state.controls.email.valid}
                                         touched={this.state.controls.email.touched}
                                         autoCorrect={false}
                                         autoCapitalize="none"
@@ -131,7 +164,7 @@ updateInputState = (key, value) => {
                                     placeholderTextColor="#CCC"
                                     value={this.state.controls.password.value}
                                     onChangeText={(val) => this.updateInputState('password', val)}
-                                    valid={this.state.controls.password.valid}
+                                    //valid={this.state.controls.password.valid}
                                     touched={this.state.controls.password.touched}
                                     secureTextEntry
                                     />
@@ -148,7 +181,7 @@ updateInputState = (key, value) => {
                                     placeholderTextColor="#CCC"
                                     value={this.state.controls.confirmPassword.value}
                                     onChangeText={(val) => this.updateInputState('confirmPassword', val)}
-                                    valid={this.state.controls.confirmPassword.valid}
+                                    //valid={this.state.controls.confirmPassword.valid}
                                     touched={this.state.controls.confirmPassword.touched}
                                     secureTextEntry
                                     />
@@ -163,46 +196,60 @@ updateInputState = (key, value) => {
                         <CustomButton 
                                 style={styles.buttonPadding}
                                 color="white" 
-                                size={16}
+                                size={14}
                                 background="#602A7A" 
                                 onPress={this.loginHandler}
                                 title="Sign In"
-                                disabled={
+                               /*disabled={
                                     !this.state.controls.email.valid ||
                                     !this.state.controls.password.valid ||
                                     !this.state.controls.confirmPassword.valid
-                                }
+                                }*/
                         />
+                    </View>
+                    <View style={{flexDirection:'row',justifyContent:"space-between",alignItems:"center"}}>
+                    <View style={[styles.buttons]}>
+                        <CustomButton 
+                                style={styles.linkText}
+                                color="white" 
+                                size={13}
+                                background="transparent" 
+                                onPress={this.signupHandler}
+                                title="Register"
+                              
+
+                        />
+                    </View>
+                    <View style={[styles.buttons]}>
+                        <CustomButton 
+                                style={styles.linkText}
+                                color="white" 
+                                size={13}
+                                background="transparent" 
+                                onPress={this.forgotpasswordHandler}
+                                title="Forgot Password"
+                        />
+                    </View>
                     </View>
                 </View>
             </KeyboardAvoidingView>
-            <Text>Normal Input View</Text>
-                <DefaultInput label="Name" placeholder="Username" style={styles.textInputNormal} placeholderTextColor="lightgrey"
-                                value={this.state.controls.email.value}
-                                onChangeText={(val) => this.updateInputState('email', val)}
-                                valid={this.state.controls.email.valid}
-                                touched={this.state.controls.email.touched}
-                                autoCorrect={false}
-                                autoCapitalize="none"
-                                keyboardType="email-address"/> 
                  </View>
-                <View style={styles.btnActionMenu}>
-            
-                </View>
+
             </View> 
+           </ScrollView>
         );
     }
 
   }
 
   const styles = StyleSheet.create({
-    container: {
-        flex:1,
-        alignItems:"center",
-        justifyContent:"center",
-    },
     direction: {
         flexDirection: Dimensions.get('window').height > 500 ? "column" : "row",
+    },
+
+    container: {
+        paddingLeft:30,
+        paddingRight:30,
     },
     inputContainerInd: {
         width:"100%",
@@ -215,10 +262,6 @@ updateInputState = (key, value) => {
         borderRadius:7,
         borderColor:'#DDD',
         borderWidth:1,
-    },
-    headingInverse: {
-        color:"white",
-        marginBottom:10,
     },
     buttonContainer: {
         width:"70%",
@@ -234,9 +277,13 @@ updateInputState = (key, value) => {
         flexDirection:"row",
         justifyContent:"space-between"
     },
+    linkText: {
+        marginTop:5,
+    },
     portraitPW: {
         flexDirection:"column",
-        justifyContent:"flex-start"
+        justifyContent:"center",
+        alignItems:"center",
     },
     landscapePWinput: {
         width:"47%",
@@ -252,8 +299,8 @@ updateInputState = (key, value) => {
     textInput: {
         width:"100%",
         color:"#CCC",
-        paddingTop:13,
-        paddingBottom:13,
+        paddingTop:12,
+        paddingBottom:12,
         borderColor:"transparent",
         backgroundColor:"transparent",
     },

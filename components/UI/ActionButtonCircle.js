@@ -7,7 +7,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 const actionButton = props => (
     <TouchableOpacity onPress={props.onPress}>
         <View style={styles.container}>
-            <View style={[styles.button, {backgroundColor:props.background}, props.style, props.disabled ? styles.disabled : null]}>
+            <View style={[styles.button, {backgroundColor:props.background, elevation:1}, props.style, props.disabled ? styles.disabled : null]}>
                 <MaterialIcons size={props.size} name={props.icon} color={props.color} />
             </View>
         </View>

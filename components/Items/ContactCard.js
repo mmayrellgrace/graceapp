@@ -5,16 +5,18 @@ import { white } from 'ansi-colors';
 
 const Contact = (props) => (
     <TouchableOpacity onPress={props.onItemPressed}>
-        <View elevation={5} style={[styles.listItem, {position:'relative',height:180, marginTop:20,}]}>
-            <View elevation={2} style={{position:'absolute',
-                                        marginTop:-20,                                         shadowColor: "#333333",
+        <View elevation={5} style={[styles.listItem, {elevation:2, position:'relative',height:180, marginTop:20,}]}>
+            <View elevation={1} style={{position:'absolute',
+                                        marginTop:-20,   
+                                        elevation:1,                                      
+                                        shadowColor: "#333333",
                                         shadowOpacity: 0.2,
-                                        shadowRadius: 4,
+                                        shadowRadius: 5,
                                         shadowOffset: {
                                         height: 0,
                                         width: 0
                                         }}}>
-                <Image style={styles.profileImage} resizeMode="cover" source={props.profileImage} />
+                <Image style={[styles.profileImage, {elevation:2,}]} resizeMode="cover" source={props.profileImage} />
             </View>
             <View style={styles.textContainer}>
                 <Text style={[styles.listText, {marginBottom:2,marginTop:8,textAlign:'center'}]}>{props.contactName.toUpperCase()}</Text>
@@ -71,7 +73,8 @@ const styles = StyleSheet.create({
         height:120,
         overflow:'hidden',
         borderRadius:60,
-        borderWidth:5,
+        borderWidth:3,
+        elevation:1,
         borderColor:'white',
 
     },
