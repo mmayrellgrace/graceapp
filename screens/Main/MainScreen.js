@@ -61,7 +61,9 @@ class MainScreen extends Component {
     }
 
     emergencyContactsGo = () => {
-        console.log('clicked');
+        this.props.navigation.push('Emergency', {
+            contacts:this.state.contacts,
+        });
     }
 
     disableAlertClick = () => {
@@ -73,6 +75,7 @@ class MainScreen extends Component {
 
 
     render () {
+        
         const { navigate } = this.props.navigation;
         let alertButton =  <MainAlertButton size={80}
                                 color="pink" 
@@ -95,7 +98,6 @@ class MainScreen extends Component {
         return (
 
             <View style={styles.listContainer}>
-                <ScrollView>
                 <View style={{alignItems:"center",marginBottom:4,}}>
                     <Heading heading={"In Case of Emergeny, \nPress Alert Button"} style={{textAlign:"center"}} />
                 </View>
@@ -111,24 +113,42 @@ class MainScreen extends Component {
                                 disabled={this.state.disableAlert}
                             />
                  </View>
- 
-                <View>
+            <View>
+                <View style={{flexDirection:"row"}}>
                 <CustomButton icon="alarm" 
                     label={this.state.disableAlert ? "enable" : "disable"} 
-                    style={{borderWidth:1,borderRadius:5,borderColor:"lightgrey"}} color="grey" 
+                    style={{}} color="grey" 
                     onPress={this.disableAlertClick}/>
                     <CustomButton icon="group" 
                     label="contacts" 
-                    style={{padding:8,borderWidth:1,borderRadius:5,borderColor:"lightgrey"}} color="grey" 
-                    onPress={() => this.props.navigation.push('Emergency', {contacts:this.state.contacts})}/></View>
-                </ScrollView> 
+                    style={{}} color="white" background="#35B5AF" 
+                    onPress={this.emergencyContactsGo}/>
+                </View>
+            </View>
+
                 <View style={styles.btnActionMenu}>
-                    <ActionButton elevation={5} 
+                <View style={{flexDirection:"row"}}>
+                <ActionButton elevation={5} 
                                 size={25}
+                                style={{marginRight:20}}
                                 color="white" 
                                 background="#602A7A" 
                                 icon="phone" 
                                 onpress={(item) => item} />
+                 <ActionButton elevation={5} 
+                                size={25}
+                                style={{marginRight:20}}
+                                color="white" 
+                                background="#602A7A" 
+                                icon="group" 
+                                onpress={(item) => item} />
+                     <ActionButton elevation={5} 
+                                size={25}
+                                color="white" 
+                                background="#602A7A" 
+                                icon="share" 
+                                onpress={(item) => item} />
+                </View>
                 </View>
             </View> 
         );

@@ -14,14 +14,11 @@ class EmergencyContacts extends Component {
         contactsLoaded: false,
         removeAnim: new Animated.Value(1),
         addAnim: new Animated.Value(0),
-        contacts: '',
-
     };
 
     constructor (props) {
         super(props);
     }
-
 
     contactsLoadedHandler = () => {
             Animated.timing(this.state.addAnim, {
@@ -58,33 +55,17 @@ class EmergencyContacts extends Component {
       }
 
     render () {
-
+        const { params } = this.props.navigation.state;
+        let paramContacts = params.contacts;
         return (
-            <Animated.View 
-            style={{
-                opacity:this.state.removeAnim,
-                transform: [{
-
-                   scale:this.state.removeAnim.interpolate({
-                       inputRange:[0, 1],
-                       outputRange: [12, 1],
-                   }) 
-                }],
-                transform: [{
-                    translateX: this.state.removeAnim.interpolate({
-                        inputRange:[0,1],
-                        outputRange:[-400, 0]
-                    })
-                }]
-            }}
-        >
+ 
             <View style={styles.listContainer}>
                 <ScrollView>
                 <View style={{alignItems:"center",marginBottom:4,}}>
-                    <Heading heading="In Case of Emergeny, Press Alert Button" />
+                    <Heading heading="Emergency Contacts" />
                 </View>
                 <View style={styles.list}>
-                        <ContactList contacts={this.props.contacts} onItemSelected={this.itemSelectedHandler} />
+                        <ContactList contacts={paramContacts} onItemSelected={this.itemSelectedHandler} />
                 </View>
                 
                 </ScrollView>  
@@ -98,7 +79,6 @@ class EmergencyContacts extends Component {
                                 onpress={(item) => item} />
                 </View>
             </View> 
-            </Animated.View>
         );
     }
 }
