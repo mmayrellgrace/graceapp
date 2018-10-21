@@ -9,7 +9,11 @@ import ForgotPasswordScreen from './screens/Login/ForgotPassword';
 import AuthLoadingScreen from './screens/Auth/AuthLoadingScreen';
 import EmergencyContacts from './screens/EmergencyContacts/EmergencyContacts';
 import EmergencyContactDetails from './screens/EmergencyContacts/EmergencyContactDetails';
+import ModalShare from './screens/Modals/ModalShare';
+import ModalPhone from './screens/Modals/ModalPhone';
+import ModalAddContact from './screens/Modals/ModalAddContact';
 import LogoTitle from './components/UI/LogoTitle';
+import ModalAlert from './screens/Modals/ModalAlert';
 
 const AppStack = createStackNavigator({ Main: MainScreen, Emergency: EmergencyContacts, EmergencyDetails: EmergencyContactDetails });
 const RegisterStack = createStackNavigator({other: MainScreen});
@@ -30,12 +34,36 @@ const AuthStack = createStackNavigator(
     }
 );
 
+const RootStack = createStackNavigator(
+  {
+    Main: {
+      screen: AppStack,
+    },
+    ModalShare: {
+      screen: ModalShare,
+    },
+    ModalPhone: {
+      screen: ModalPhone,
+    },
+    ModalAlert: {
+      screen: ModalAlert,
+    },
+    ModalAddContact: {
+      screen: ModalAddContact,
+    }
+  },
+  {
+    mode: 'modal',
+    headerMode: 'none',
+  }
+);
+
 
 
 export default createSwitchNavigator(
   {
     AuthLoading: AuthLoadingScreen,
-    App: AppStack,
+    App: RootStack,
     Auth: AuthStack,
     other: RegisterStack,
   },

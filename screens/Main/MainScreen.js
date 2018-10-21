@@ -53,6 +53,21 @@ class MainScreen extends Component {
         });
     }
 
+    openModalShare = () => {
+        this.props.navigation.navigate('ModalShare');
+    }
+    openModalPhone = () => {
+        this.props.navigation.navigate('ModalPhone');
+    }
+
+    openModalAlert = () => {
+        this.props.navigation.navigate('ModalAlert');
+    }
+
+    openModalAddContact = () => {
+        this.props.navigation.navigate('ModalAddContact');
+    }
+
     disableAlertClick = () => {
         const disableAl = this.state.disableAlert;
         this.setState({
@@ -105,7 +120,7 @@ class MainScreen extends Component {
                                 color="pink" 
                                 background="red" 
                                 icon={this.state.disableAlert ? "notifications-off" : "add-alert"} 
-                                onpress={(item) => item}
+                                onPress={this.openModalAlert}
                                 disabled={this.state.disableAlert}
                             />
                  </View>
@@ -121,7 +136,7 @@ class MainScreen extends Component {
                                 color="white" 
                                 background="#602A7A" 
                                 icon="share" 
-                                onPress={(item) => item} />
+                                onPress={this.openModalShare} />
                 <ActionButton elevation={5} 
                                 size={20}
                                 style={{marginRight:30}}
@@ -134,7 +149,7 @@ class MainScreen extends Component {
                                 color="white" 
                                 background="#602A7A" 
                                 icon="phone" 
-                                onPress={(item) => item} />
+                                onPress={this.openModalPhone} />
                 </View>
                 </View>
             </View> 
