@@ -16,56 +16,45 @@ class ModalShare extends Component {
                     </View>
                 </ImageBackground>
               </View>
-              <View style={{ width:"100%",height:75,backgroundColor:"#a058b0", flexDirection:"column"}}>
-                <View style={{flex:1, width:"100%"}}>
-                    <View style={{width:"100%",flexDirection:"row",maxWidth:400,justifyContent:"space-between",alignItems:"center", marginTop:10, opacity:.8}}>
+              <View style={{ width:"100%", minWidth:"100%",height:70,backgroundColor:"#a058b0", flexDirection:"column"}}>
+                <View style={{flex:1, width:"100%", alignItems:"center", justifyContent:"center"}}>
+                    <View style={{width:"100%",minWidth:"95%",flexDirection:"row",maxWidth:400,justifyContent:"space-around",paddingLeft:"5%",alignItems:"center", marginTop:10, opacity:.8}}>
                             <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
-                            <View style={[styles.buttons]}>
                                 <Ionicons 
                                         color="white" 
                                         size={30}
                                         name="logo-facebook"
                                 />
-                            </View>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
-                            <View style={[styles.buttons]}>
                                 <Ionicons 
-                                        style={styles.linkText}
-                                        buttonText={{textDecorationLine:"underline",textDecorationStyle:"solid",textDecorationColor:"white"}}
                                         color="white" 
                                         size={30}
                                         name="logo-twitter" 
                                 />
-                            </View>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
-                            <View style={[styles.buttons]}>
                                 <Ionicons 
                                         color="white" 
                                         size={30}
                                         name="logo-instagram"
                                 />
-                            </View>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
-                            <View style={[styles.buttons]}>
                                 <Ionicons 
-                                        buttonText={{textDecorationLine:"underline",textDecorationStyle:"solid",textDecorationColor:"white"}}
                                         color="white" 
                                         size={30}
                                         name="logo-linkedin" 
                                 />
-                            </View>
                             </TouchableOpacity>
                         </View>
                 </View>
             </View>
-            <View style={{maxWidth:250, paddingTop:40}}>
-            <Text style={{ fontSize: 20, lineHeight:30, color:"white", textAlign:"center" }}>
-                Share The Grace App with your friends and family to help us
-make a difference in young lives</Text>
-            </View>
+                <View style={{flex:2,maxWidth:250, paddingTop:40}}>
+                    <Text style={{ fontSize: 20, lineHeight:30, color:"white", textAlign:"center" }}>
+                        Share The Grace App with your friends and family to help us
+        make a difference in young lives</Text>
+                </View>
             </View>
           <View>
             <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
@@ -90,6 +79,7 @@ make a difference in young lives</Text>
     buttonPadding: {
         padding:18,
     },
+    buttons:{}
 });
 
   export default ModalShare;
