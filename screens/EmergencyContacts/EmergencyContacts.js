@@ -5,10 +5,19 @@ import CustomButton from '../../components/UI/ButtonWithIcon';
 import ContactList from '../../components/Lists/ContactList';
 import ActionButton from '../../components/UI/ActionButtonCircle';
 import Heading from '../../components/UI/HeadingText';
-
+import EmergencyContactDetails from './EmergencyContactDetails';
+import LogoTitle from '../../components/UI/LogoTitle';
 
 class EmergencyContacts extends Component {
-    
+
+
+    static navigationOptions = {
+        headerTitle: <LogoTitle backgroundSize={80} imageSize={65} radius={40} />,
+        headerStyle: {
+          backgroundColor: '#602A7A',
+        },
+        headerTintColor: '#fff',
+      }; 
 
     state = {
         contactsLoaded: false,
@@ -92,14 +101,14 @@ class EmergencyContacts extends Component {
         return (
  
             <View style={styles.listContainer}>
-                <ScrollView>
-                <View style={{alignItems:"center",marginBottom:4,}}>
-                    <Heading heading="Emergency Contacts" />
-                </View>
-                <View style={styles.list}>
-                    <ContactList contacts={this.state.contacts} onItemSelected={this.itemSelectedHandler} onItemDeleted={this.itemDeletedHandler} />
-                </View>
-                
+                    <View style={{alignItems:"center",marginBottom:4,}}>
+                        <Heading heading="Emergency Contacts" />
+                    </View>
+                <ScrollView style={{paddingTop:10}}>
+                    <View style={styles.list}>
+                        <ContactList contacts={this.state.contacts} onItemSelected={this.itemSelectedHandler} onItemDeleted={this.itemDeletedHandler} />
+                    </View>
+                    <EmergencyContactDetails />
                 </ScrollView>  
                 <View style={styles.btnActionMenu}>
                     <ActionButton elevation={5} 
@@ -110,6 +119,7 @@ class EmergencyContacts extends Component {
                                 icon="add" 
                                 onpress={(item) => item} />
                 </View>
+
             </View> 
         );
     }
@@ -119,7 +129,8 @@ const styles = StyleSheet.create({
     listContainer: {
         position:"relative",
         padding:10,
-        backgroundColor:"#E8E8E8",
+        paddingTop:20,
+        backgroundColor:"#FFF",
         flex:1,
         width:"100%",
         justifyContent:"space-between",

@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, Button } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import { white } from 'ansi-colors';
 
 const Contact = (props) => (
     <TouchableOpacity onPress={props.onItemSelected}>
@@ -19,13 +18,13 @@ const Contact = (props) => (
                                         }}}>
                 <Image style={[styles.profileImage]} resizeMode="cover" source={props.profileImage} />
             </View>
-            <View style={styles.textContainer}>
+            <View style={[styles.textContainer]}>
                 <Text style={[styles.listText, {marginBottom:2,marginTop:8,textAlign:'center'}]}>{props.contactName.toUpperCase()}</Text>
                 <Text style={[styles.text, {color:"#999",marginBottom:8,fontSize:13,textAlign:'center'}]}>{props.phone}</Text>
                 <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:"center",
                             backgroundColor:"#f6f6f6",
                             borderBottomLeftRadius:6,borderBottomRightRadius:6}}>
-                    <View style={[styles.iconTextContainer, ]}> 
+                    <View style={[styles.iconTextContainer]}> 
                         <TouchableOpacity onPress={props.onItemTest}>
                         <View style={styles.buttonContainer}>
                         <View style={{marginRight:4,}}>

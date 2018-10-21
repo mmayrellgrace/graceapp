@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Animated, 
+import { Image, View, Text, StyleSheet, TouchableOpacity, Animated, 
     KeyboardAvoidingView, Keyboard, ScrollView, Dimensions } from 'react-native';
 import Heading from '../../components/UI/HeadingText';
 import ActionButton from '../../components/UI/ActionButtonCircle';
 import MainAlertButton from '../../components/UI/MainAlertButtonCircle';
 import CustomButton from '../../components/UI/ButtonWithIcon';
+import LogoTitle from '../../components/UI/LogoTitle';
 
 class MainScreen extends Component {
-
+    static navigationOptions = {
+        headerTitle: <LogoTitle backgroundSize={100} imageSize={80} radius={50} />,
+        headerStyle: {
+          backgroundColor: '#602A7A',
+        },
+        headerTintColor: '#fff',
+      };
     state = {
-        navigationOptions:{
-                header:null,
-            },
         disableAlert:false,
         contactsLoaded: false,
         removeAnim: new Animated.Value(1),
@@ -140,8 +144,10 @@ class MainScreen extends Component {
 
 const styles = StyleSheet.create({
     listContainer: {
+        backgroundColor:"white",
         position:"relative",
-        padding:10,
+        paddingLeft:10,
+        paddingRight:10,
         flex:1,
         justifyContent:"center",
     },
@@ -165,11 +171,10 @@ const styles = StyleSheet.create({
       btnAlertDisable: {
         position:"absolute",
         zIndex:10, 
-        margin:10,
         marginLeft:0,
         left: 0, 
-        top: 10, 
-        padding:10,
+        top: 0, 
+        paddingTop:2,
 
        
       }

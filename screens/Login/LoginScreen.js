@@ -3,17 +3,16 @@
   import { View, Text, StyleSheet, TouchableOpacity, Animated, 
       KeyboardAvoidingView, Keyboard, Image, TouchableWithoutFeedback, AsyncStorage, ScrollView, Dimensions } from 'react-native';
   import CustomButton from '../../components/UI/ButtonWithBackground';
+  import IconButton from '../../components/UI/ButtonWithIcon';
   import DefaultInput from '../../components/UI/DefaultInput';
   import Heading from '../../components/UI/HeadingText';
- import { MaterialIcons } from '@expo/vector-icons';
-  import Logo from '../../assets/Logo-Grace.png';
+  import { MaterialIcons, Ionicons } from '@expo/vector-icons';
+import LogoTitle from '../../components/UI/LogoTitle';
+  
 
   class LoginScreen extends Component {
-    
+
     state = {
-        navigationOptions:{
-            header:null,
-        },
         viewMode: Dimensions.get('window').height > 800 ? "portrait" : "landscape",
         controls: {
             email: {
@@ -120,20 +119,21 @@ updateInputState = (key, value) => {
         let logoImage = <View style={{alignItems:"center",marginBottom:4,}}>
                             <Heading heading="Login" />
                         </View>;
-        if(this.state.viewMode === "portrait") {
+       /* if(this.state.viewMode === "portrait") {
                     logoImage = (
                         <View style={{width:"100%",alignItems:"center"}}>
                             <Image source={Logo} resizeMode="contain" style={{width:140, height:120}}/> 
                         </View>);
-        }
+        }*/
         return (
-            <ScrollView>
+            <ScrollView style={{flex:1,backgroundColor:"#35B5AF",}}>
 
-            <View style={[styles.container, {justifyContent:"space-around",}]}>
-                {logoImage}
-                <View>
+            <View style={[styles.container, {justifyContent:"center",paddingTop:"50%"}]}>
+                <View style={{flex:1}}>
                 <KeyboardAvoidingView behavior="padding">
-               
+                <View style={{width:"100%",alignItems:"center"}}>
+                            
+                </View>
                 <View style={{width:"100%",flex:1,justifyContent:"center"}}>
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View style={{width:"100%",alignItems:"center",flex:1,}}>
@@ -210,30 +210,77 @@ updateInputState = (key, value) => {
                         />
                     </View>
                     <View style={{flexDirection:'row',justifyContent:"space-between",alignItems:"center"}}>
-                    <View style={[styles.buttons]}>
-                        <CustomButton 
-                                style={styles.linkText}
-                                buttonText={{textDecorationLine:"underline",textDecorationStyle:"solid",textDecorationColor:"white"}}
-                                color="white" 
-                                size={13}
-                                background="transparent" 
-                                onPress={this.signupHandler}
-                                title="Register"
-                              
+                        <View style={[styles.buttons]}>
+                            <CustomButton 
+                                    style={styles.linkText}
+                                    buttonText={{textDecorationLine:"underline",textDecorationStyle:"solid",textDecorationColor:"white"}}
+                                    color="white" 
+                                    size={13}
+                                    background="transparent" 
+                                    onPress={this.signupHandler}
+                                    title="Register"
+                                
 
-                        />
+                            />
+                        </View>
+                        <View style={[styles.buttons]}>
+                            <CustomButton 
+                                    style={styles.linkText}
+                                    buttonText={{textDecorationLine:"underline",textDecorationStyle:"solid",textDecorationColor:"white"}}
+                                    color="white" 
+                                    size={13}
+                                    background="transparent" 
+                                    onPress={this.forgotpasswordHandler}
+                                    title="Forgot Password"
+                            />
+                        </View>
                     </View>
-                    <View style={[styles.buttons]}>
-                        <CustomButton 
-                                style={styles.linkText}
-                                buttonText={{textDecorationLine:"underline",textDecorationStyle:"solid",textDecorationColor:"white"}}
-                                color="white" 
-                                size={13}
-                                background="transparent" 
-                                onPress={this.forgotpasswordHandler}
-                                title="Forgot Password"
-                        />
-                    </View>
+                    <View><Text style={{color:"#0f7071", textAlign:"center", marginTop:40}}>or Sign in with:</Text></View>
+                    <View style={{flexDirection:'row',justifyContent:"space-around",alignItems:"center", marginTop:10, opacity:.8}}>
+                        <TouchableOpacity>
+                        <View style={[styles.buttons]}>
+                            <Ionicons 
+                                    color="white" 
+                                    size={30}
+                                    name="logo-facebook"
+                                    onPress={this.loginHandler}
+                            />
+                        </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity>
+                        <View style={[styles.buttons]}>
+                            <Ionicons 
+                                    style={styles.linkText}
+                                    buttonText={{textDecorationLine:"underline",textDecorationStyle:"solid",textDecorationColor:"white"}}
+                                    color="white" 
+                                    size={30}
+                                    name="logo-twitter" 
+                                    onPress={this.loginHandler}
+                            />
+                        </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity>
+                        <View style={[styles.buttons]}>
+                            <Ionicons 
+                                    color="white" 
+                                    size={30}
+                                    name="logo-instagram"
+                                    onPress={this.loginHandler}
+                            />
+                        </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity>
+                        <View style={[styles.buttons]}>
+                            <Ionicons 
+                                    style={styles.linkText}
+                                    buttonText={{textDecorationLine:"underline",textDecorationStyle:"solid",textDecorationColor:"white"}}
+                                    color="white" 
+                                    size={30}
+                                    name="logo-linkedin" 
+                                    onPress={this.loginHandler}
+                            />
+                        </View>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </KeyboardAvoidingView>
@@ -254,6 +301,7 @@ updateInputState = (key, value) => {
     container: {
         paddingLeft:30,
         paddingRight:30,
+        flex:1,
     },
     inputContainerInd: {
         width:"100%",
