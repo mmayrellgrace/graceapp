@@ -105,7 +105,7 @@ class MainScreen extends Component {
                     <CustomButton 
                         icon={this.state.disableAlert ? "add-alert" : "notifications-off"} 
                         label={this.state.disableAlert ? "enable" : "disable"} 
-                        style={{borderColor:"#CCC", borderWidth:1, borderRadius:0}} 
+                        style={{borderColor:"#CCC", borderBottomWidth:1, borderRightWidth:1,borderRadius:0}} 
                         color={this.state.disableAlert ? "#35B5AF" : "grey"} 
 
                         onPress={this.disableAlertClick}/>
@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
         marginLeft:0,
         left: 0, 
         top: 0, 
-        paddingTop:2,
+        paddingTop:0,
 
        
       }

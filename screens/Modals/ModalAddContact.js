@@ -6,7 +6,7 @@ class ModalAddContact extends Component {
     render() {
       return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <Text style={{ fontSize: 30 }}>Modal Share!</Text>
+          <Text style={{ fontSize: 30 }}>Modal Add Contact</Text>
           <Button
             onPress={() => this.props.navigation.goBack()}
             title="Dismiss"

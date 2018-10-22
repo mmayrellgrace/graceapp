@@ -117,7 +117,7 @@ updateInputState = (key, value) => {
     render() {
 
         let logoImage = <View style={{alignItems:"center",marginBottom:4,}}>
-                            <Heading heading="Login" />
+                            <Heading heading="Login" color="white" />
                         </View>;
        /* if(this.state.viewMode === "portrait") {
                     logoImage = (
@@ -132,7 +132,7 @@ updateInputState = (key, value) => {
                 <View style={{flex:1}}>
                 <KeyboardAvoidingView behavior="padding">
                 <View style={{width:"100%",alignItems:"center"}}>
-                            
+       
                 </View>
                 <View style={{width:"100%",flex:1,justifyContent:"center"}}>
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -157,7 +157,7 @@ updateInputState = (key, value) => {
                                     </View>
                             </View>
                         </View>
-                        <View style={[this.state.viewMode === "portrait" ? styles.portraitPW : styles.landscapePW, styles.inputContainerInd] }>
+                        <View style={[this.state.viewMode === "portrait" ? styles.portraitPW : styles.landscapePW, styles.inputContainerInd, {marginTop:8}] }>
                             <View style={[this.state.viewMode === "portrait" ? styles.portraitPWinput : styles.landscapePWinput, styles.inputContainer ]}>
                                 <View style={{flexDirection:"row", alignItems:"center"}}> 
                                     <MaterialIcons name="lock" size={28} style={styles.icon} /> 
@@ -174,27 +174,9 @@ updateInputState = (key, value) => {
                                 </View>
                             </View>     
                         </View>
-                        <View style={[this.state.viewMode === "portrait" ? styles.portraitPW : styles.landscapePW, styles.inputContainerInd] }>
-                            <View style={[this.state.viewMode === "portrait" ? styles.portraitPWinput : styles.landscapePWinput, styles.inputContainer ]}>
-                                <View style={{flex:1, flexDirection:"row", alignItems:"center"}}> 
-                                    <MaterialIcons name="lock" size={28} style={styles.icon} /> 
-                                    <View style={{flex:1,width:'100%'}}> 
-                                    <DefaultInput placeholder="Confirm Password" style={styles.textInput} 
-                                    placeholderTextColor="#CCC"
-                                    value={this.state.controls.confirmPassword.value}
-                                    onChangeText={(val) => this.updateInputState('confirmPassword', val)}
-                                    //valid={this.state.controls.confirmPassword.valid}
-                                    touched={this.state.controls.confirmPassword.touched}
-                                    secureTextEntry
-                                    />
-                                    </View>
-                                </View>
-                            </View>
-                                
-                        </View>
                         </View>
                     </TouchableWithoutFeedback>   
-                    <View style={styles.buttons}>
+                    <View style={[styles.buttons, {marginTop:8}]}>
                         <CustomButton 
                                 style={styles.buttonPadding}
                                 color="white" 
@@ -292,6 +274,27 @@ updateInputState = (key, value) => {
     }
 
   }
+
+  /*
+  <View style={[this.state.viewMode === "portrait" ? styles.portraitPW : styles.landscapePW, styles.inputContainerInd] }>
+                            <View style={[this.state.viewMode === "portrait" ? styles.portraitPWinput : styles.landscapePWinput, styles.inputContainer ]}>
+                                <View style={{flex:1, flexDirection:"row", alignItems:"center"}}> 
+                                    <MaterialIcons name="lock" size={28} style={styles.icon} /> 
+                                    <View style={{flex:1,width:'100%'}}> 
+                                    <DefaultInput placeholder="Confirm Password" style={styles.textInput} 
+                                    placeholderTextColor="#CCC"
+                                    value={this.state.controls.confirmPassword.value}
+                                    onChangeText={(val) => this.updateInputState('confirmPassword', val)}
+                                    //valid={this.state.controls.confirmPassword.valid}
+                                    touched={this.state.controls.confirmPassword.touched}
+                                    secureTextEntry
+                                    />
+                                    </View>
+                                </View>
+                            </View>
+                                
+                        </View>
+                        */
 
   const styles = StyleSheet.create({
     direction: {
