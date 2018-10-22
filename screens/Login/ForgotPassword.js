@@ -40,40 +40,41 @@ class ForgotPassword extends Component  {
         Dimensions.addEventListener("change", this.updateStyles);
     }
     
-    loginHandler = () => {
-        this.props.navigation.navigate('App');
-    };
     forgotpasswordHandler = () => {
-        this.props.navigation.navigate('Auth');
+        this.props.navigation.goBack();
     };    
 
 
     render() {
         return (
-            
-        <View style={{padding:10, flex:1}}>
-
+        
+        <View style={{padding:30, flex:1}}>
             <View>
-                <HeadingText />            
+                <HeadingText heading="Forgot Password"  style={{textAlign:"center"}}/>            
             </View>
-            <DefaultInput placeholder="Password" label="Email Address" style={styles.textInput} 
-                placeholderTextColor="#CCC"
-                value={this.state.controls.password.value}
-                onChangeText={(val) => this.updateInputState('password', val)}
-                touched={this.state.controls.password.touched}
-                />
-             <View style={[styles.buttons]}>
+            <View style={{marginTop:25}}>
+                <DefaultInput placeholder="Password" label="Email Address" style={[styles.textInput]} 
+                    placeholderTextColor="#CCC"
+                    value={this.state.controls.password.value}
+                    onChangeText={(val) => this.updateInputState('password', val)}
+                    touched={this.state.controls.password.touched}
+                    />
+                    <View style={[styles.buttons, {marginTop:8}]}>
                         <CustomButton 
                                 style={styles.buttonPadding}
-                                color="green" 
-                                size={16}
-                                background="transparent" 
-                                onPress={this.forgotPasswordHandler}
-                                title="Register"
-                              
-
+                                color="white" 
+                                size={14}
+                                background="#35B5AF" 
+                                onPress={this.forgotpasswordHandler}
+                                title="Send Password Reset"
+                               /*disabled={
+                                    !this.state.controls.email.valid ||
+                                    !this.state.controls.password.valid ||
+                                    !this.state.controls.confirmPassword.valid
+                                }*/
                         />
                     </View>
+            </View>
         </View>
     )};
         
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
             padding:13,
         },
     buttonPadding: {
-            padding:18,
+            padding:14,
         },
     buttons: {
             marginTop:5,

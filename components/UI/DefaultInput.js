@@ -12,11 +12,12 @@ const DefaultInput = props => {
         <TextInput 
             underlineColorAndroid="transparent"
             {...props}
-            style={[styles.textInputs, props.style, !props.valid && props.touched ? styles.inValid : null]} 
+            style={[styles.textInputs, props.style, ]} 
         />
     </View>
 );
 }
+//!props.valid && props.touched ? styles.inValid : null
 
 const styles = StyleSheet.create({
     textInputs: {
