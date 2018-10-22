@@ -5,8 +5,12 @@ import HeadingText from './../../components/UI/HeadingText';
 import CustomButton from './../../components/UI/ButtonWithBackground';
 import ActionButton from './../../components/UI/ActionButtonCircle';
 import { MaterialIcons } from '@expo/vector-icons';
+import LogoTitle from './../../components/UI/LogoTitle';
 
 class Signup extends Component  {
+    static navigationOptions = {
+        headerTitle: <LogoTitle backgroundSize={90} imageSize={75} radius={45} />,
+    };
     state = {
         step: "one",
         percent: "20%",

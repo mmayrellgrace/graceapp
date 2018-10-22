@@ -89,11 +89,10 @@ class EmergencyContacts extends Component {
         });
       }
 
-    emergencyContactsGo = () => {
-        this.props.navigation.push('Emergency', {
-            contacts:this.state.contacts,
-        });
+      openModalAddContact = () => {
+        this.props.navigation.navigate('ModalAddContact');
     }
+
 
     render () {
         const { params } = this.props.navigation.state;
@@ -117,7 +116,7 @@ class EmergencyContacts extends Component {
                                 color="white" 
                                 background="#602A7A" 
                                 icon="add" 
-                                onpress={(item) => item} />
+                                onPress={this.openModalAddContact} />
                 </View>
 
             </View> 

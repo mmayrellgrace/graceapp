@@ -3,8 +3,12 @@ import { View, Dimensions, Text, StyleSheet } from 'react-native';
 import DefaultInput from './../../components/UI/DefaultInput';
 import HeadingText from './../../components/UI/HeadingText';
 import CustomButton from './../../components/UI/ButtonWithBackground';
+import LogoTitle from './../../components/UI/LogoTitle';
 
 class ForgotPassword extends Component  {
+    static navigationOptions = {
+        headerTitle: <LogoTitle backgroundSize={90} imageSize={75} radius={45} />,
+    };
     state = {
         navigationOptions:{
             header:null,

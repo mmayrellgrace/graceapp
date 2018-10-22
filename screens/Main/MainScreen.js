@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image, View, Text, StyleSheet, TouchableOpacity, Animated, 
-    KeyboardAvoidingView, Keyboard, ScrollView, Dimensions } from 'react-native';
+    KeyboardAvoidingView, Keyboard, ScrollView, Dimensions, Linking } from 'react-native';
 import Heading from '../../components/UI/HeadingText';
 import ActionButton from '../../components/UI/ActionButtonCircle';
 import MainAlertButton from '../../components/UI/MainAlertButtonCircle';
@@ -9,7 +9,7 @@ import LogoTitle from '../../components/UI/LogoTitle';
 
 class MainScreen extends Component {
     static navigationOptions = {
-        headerTitle: <LogoTitle backgroundSize={100} imageSize={80} radius={50} />,
+        headerTitle: <LogoTitle backgroundSize={80} imageSize={65} radius={40} />,
         headerStyle: {
           backgroundColor: '#602A7A',
         },
@@ -64,15 +64,16 @@ class MainScreen extends Component {
         this.props.navigation.navigate('ModalAlert');
     }
 
-    openModalAddContact = () => {
-        this.props.navigation.navigate('ModalAddContact');
-    }
-
     disableAlertClick = () => {
         const disableAl = this.state.disableAlert;
         this.setState({
             disableAlert: !disableAl
         });
+    }
+
+    phoneCall =()=>{
+        const url='tel://+9723390423'
+        Linking.openURL(url)
     }
 
 

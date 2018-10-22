@@ -25,7 +25,7 @@ const AuthStack = createStackNavigator(
     {
       initialRouteName: 'Login',
       navigationOptions: {
-        headerTitle: <LogoTitle backgroundSize={100} imageSize={80} radius={50} />,
+        headerTitle: <LogoTitle backgroundSize={150} imageSize={130} radius={75} />,
         headerStyle: {
           backgroundColor: '#602A7A',
         },
