@@ -107,6 +107,7 @@ class Signup extends Component  {
 
     render () {
         let actionButtonLeft = null;
+        let mainContent = null;
         if (this.state.step != "one") {
             actionButtonLeft = <View style={styles.btnActionMenuLeft}>
                                 <ActionButton elevation={5} 
@@ -118,6 +119,72 @@ class Signup extends Component  {
                                                 onPress={this.previousStepHandler} />
                             </View>
         }
+        switch(this.state.step) {
+            case "one":
+            mainContent = 
+            <View style={{width:"100%",alignItems:"center",flex:1,justifyContent:"flex-start", marginTop:10}}>
+                <View style={{flexDirection:"row", alignItems:"center",marginTop:15}}> 
+                <MaterialIcons name="person" size={28} color="#CCC" style={{marginRight:10,marginTop:10}} />   
+                <View style={{flex:1,width:'100%'}}> 
+                <DefaultInput placeholder="Enter Name" label="Name" style={styles.textInput} 
+                placeholderTextColor="#CCC"
+                value={this.state.email}
+                onChangeText={(val) => this.updateInputState('password', val)}
+                touched={this.state.controls.password.touched}
+                />
+                  
+                </View>
+             </View>
+             <View style={{flexDirection:"row", alignItems:"center",marginTop:15}}> 
+                <MaterialIcons name="email" size={28} color="#CCC" style={{marginRight:10,marginTop:10}} />   
+                <View style={{flex:1,width:'100%'}}> 
+                <DefaultInput placeholder="Enter Email Address" label="Email Address" style={styles.textInput} 
+                placeholderTextColor="#CCC"
+                value={this.state.email}
+                onChangeText={(val) => this.updateInputState('password', val)}
+                touched={this.state.controls.password.touched}
+                />
+                  
+                </View>
+             </View>
+             <View style={{flexDirection:"row", alignItems:"center", marginTop:15}}> 
+                <MaterialIcons name="lock" size={28} color="#CCC" style={{marginRight:10,marginTop:10}} />   
+                <View style={{flex:1,width:'100%'}}> 
+                <DefaultInput placeholder="Enter Password" label="Password" style={styles.textInput} 
+                placeholderTextColor="#CCC"
+                value={this.state.email}
+                onChangeText={(val) => this.updateInputState('password', val)}
+                touched={this.state.controls.password.touched}
+                />
+                  
+                </View>
+             </View>
+
+             <View style={{flexDirection:"row", alignItems:"center", marginTop:15}}> 
+                <MaterialIcons name="lock" size={28} color="#CCC" style={{marginRight:10,marginTop:10}} />   
+                <View style={{flex:1,width:'100%'}}> 
+                <DefaultInput placeholder="Confirm Password" label="Confirm Password" style={styles.textInput} 
+                placeholderTextColor="#CCC"
+                value={this.state.email}
+                onChangeText={(val) => this.updateInputState('password', val)}
+                touched={this.state.controls.password.touched}
+                />
+                  
+                </View>
+             </View>
+        </View>
+        ;
+        break;
+    case "two":
+        mainContent =
+            <View style={{width:"100%",alignItems:"center",flex:1,justifyContent:"flex-start", marginTop:10}}>
+                
+            </View>
+        ; 
+        break;
+    
+    }
+
         return (
             
         <View style={{padding:30, flex:1}}>
@@ -134,57 +201,7 @@ class Signup extends Component  {
                 </View>
             </View>
             <View style={{ borderBottomWidth:1, borderBottomColor:"#CCC"}}></View>
-            <View style={{width:"100%",alignItems:"center",flex:1,justifyContent:"flex-start", marginTop:10}}>
-                                <View style={{flexDirection:"row", alignItems:"center",marginTop:15}}> 
-                                    <MaterialIcons name="person" size={28} color="#CCC" style={{marginRight:10,marginTop:10}} />   
-                                    <View style={{flex:1,width:'100%'}}> 
-                                    <DefaultInput placeholder="Enter Name" label="Name" style={styles.textInput} 
-                                    placeholderTextColor="#CCC"
-                                    value={this.state.email}
-                                    onChangeText={(val) => this.updateInputState('password', val)}
-                                    touched={this.state.controls.password.touched}
-                                    />
-                                      
-                                    </View>
-                                 </View>
-                                 <View style={{flexDirection:"row", alignItems:"center",marginTop:15}}> 
-                                    <MaterialIcons name="email" size={28} color="#CCC" style={{marginRight:10,marginTop:10}} />   
-                                    <View style={{flex:1,width:'100%'}}> 
-                                    <DefaultInput placeholder="Enter Email Address" label="Email Address" style={styles.textInput} 
-                                    placeholderTextColor="#CCC"
-                                    value={this.state.email}
-                                    onChangeText={(val) => this.updateInputState('password', val)}
-                                    touched={this.state.controls.password.touched}
-                                    />
-                                      
-                                    </View>
-                                 </View>
-                                 <View style={{flexDirection:"row", alignItems:"center", marginTop:15}}> 
-                                    <MaterialIcons name="lock" size={28} color="#CCC" style={{marginRight:10,marginTop:10}} />   
-                                    <View style={{flex:1,width:'100%'}}> 
-                                    <DefaultInput placeholder="Enter Password" label="Password" style={styles.textInput} 
-                                    placeholderTextColor="#CCC"
-                                    value={this.state.email}
-                                    onChangeText={(val) => this.updateInputState('password', val)}
-                                    touched={this.state.controls.password.touched}
-                                    />
-                                      
-                                    </View>
-                                 </View>
-
-                                 <View style={{flexDirection:"row", alignItems:"center", marginTop:15}}> 
-                                    <MaterialIcons name="lock" size={28} color="#CCC" style={{marginRight:10,marginTop:10}} />   
-                                    <View style={{flex:1,width:'100%'}}> 
-                                    <DefaultInput placeholder="Confirm Password" label="Confirm Password" style={styles.textInput} 
-                                    placeholderTextColor="#CCC"
-                                    value={this.state.email}
-                                    onChangeText={(val) => this.updateInputState('password', val)}
-                                    touched={this.state.controls.password.touched}
-                                    />
-                                      
-                                    </View>
-                                 </View>
-            </View>  
+            {mainContent}             
             {actionButtonLeft}
              <View style={styles.btnActionMenu}>
                 <ActionButton elevation={5} 
