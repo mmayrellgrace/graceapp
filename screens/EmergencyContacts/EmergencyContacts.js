@@ -12,7 +12,8 @@ class EmergencyContacts extends Component {
 
 
     static navigationOptions = {
-        headerTitle: <LogoTitle backgroundSize={80} imageSize={65} radius={40} />,
+        title:"Emergency Contacts",
+        //headerTitle: <LogoTitle backgroundSize={80} imageSize={65} radius={40} />,
         headerStyle: {
           backgroundColor: '#602A7A',
         },
@@ -71,7 +72,9 @@ class EmergencyContacts extends Component {
             return item.key === key;
         });
         
-        alert(JSON.Stringify(selectedContact));
+        this.props.navigation.navigate('EmergencyDetails', {
+            contact: selectedContact
+        });
     }
 
     itemDeletedHandler = key => {
@@ -100,14 +103,10 @@ class EmergencyContacts extends Component {
         return (
  
             <View style={styles.listContainer}>
-                    <View style={{alignItems:"center",marginBottom:4,}}>
-                        <Heading heading="Emergency Contacts" />
-                    </View>
-                <ScrollView style={{paddingTop:10}}>
+                <ScrollView>
                     <View style={styles.list}>
                         <ContactList contacts={this.state.contacts} onItemSelected={this.itemSelectedHandler} onItemDeleted={this.itemDeletedHandler} />
                     </View>
-                    <EmergencyContactDetails />
                 </ScrollView>  
                 <View style={styles.btnActionMenu}>
                     <ActionButton elevation={5} 
@@ -128,7 +127,7 @@ const styles = StyleSheet.create({
     listContainer: {
         position:"relative",
         padding:10,
-        paddingTop:20,
+        paddingTop:0,
         backgroundColor:"#FFF",
         flex:1,
         width:"100%",

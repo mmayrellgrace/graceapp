@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "grace",
-    "description": "",
+    "description": "grace app first draft",
     "slug": "grace",
     "privacy": "public",
     "sdkVersion": "30.0.0",
@@ -9,6 +9,9 @@
       "ios",
       "android"
     ],
+    "android": {
+      "package": "com.mckennasgrace.graceapp"
+    },
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -24,7 +27,9 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
-    }
+      "supportsTablet": true,
+      "bundleIdentifier": "com.mckennasgrace.graceapp"
+    },
+    "githubUrl": "https://github.com/mmayrellgrace/graceapp"
   }
 }

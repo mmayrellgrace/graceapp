@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Dimensions, Text, StyleSheet, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import { View, Dimensions, Text, StyleSheet, Keyboard, TouchableWithoutFeedback, ScrollView } from 'react-native';
 import DefaultInput from './../../components/UI/DefaultInput';
 import HeadingText from './../../components/UI/HeadingText';
 import CustomButton from './../../components/UI/ButtonWithBackground';
@@ -9,7 +9,8 @@ import LogoTitle from './../../components/UI/LogoTitle';
 
 class Signup extends Component  {
     static navigationOptions = {
-        headerTitle: <LogoTitle backgroundSize={90} imageSize={75} radius={45} />,
+        title: "Register Account",
+       headerTitle: null//<LogoTitle backgroundSize={90} imageSize={75} radius={45} />,
     };
     state = {
         step: "one",
@@ -523,10 +524,6 @@ class Signup extends Component  {
         return (
             
         <View style={{padding:30, flex:1}}>
-
-            <View>
-                <HeadingText heading="Register"  style={{textAlign:"center"}}/>            
-            </View>
             <Text style={{color:"#BBB",fontSize:13,marginTop:15,marginLeft:20,}}>{this.state.percent} Progress</Text>
             <View style={{margin:10,marginBottom:20,marginTop:5,padding:20, borderColor:"#CCC", borderWidth:1, 
                 borderRadius:50, backgroundColor:"transparent",
@@ -536,9 +533,11 @@ class Signup extends Component  {
                 </View>
             </View>
             <View style={{ borderBottomWidth:1, borderBottomColor:"#CCC"}}></View>
+            <ScrollView style={{width:"100%"}}>
             {mainContent}             
-            {actionButtonLeft}
             {collegeDependency}
+            </ScrollView>
+            {actionButtonLeft}
              <View style={styles.btnActionMenu}>
                 <ActionButton elevation={5} 
                                 size={25}
@@ -589,8 +588,9 @@ const styles = StyleSheet.create({
             marginTop:5,
         },
         buttonCollegeYes: {
-            margin:10,
             padding:20,
+            width:85,
+            height:85,
             alignItems:"center",
             justifyContent:"center",
             backgroundColor:"transparent",
@@ -600,7 +600,8 @@ const styles = StyleSheet.create({
         },
         buttonCollegeYesActive: {
             padding:20,
-            margin:10,
+            width:85,
+            height:85,
             alignItems:"center",
             justifyContent:"center",
             backgroundColor:"#35B5AF",
@@ -610,7 +611,8 @@ const styles = StyleSheet.create({
         },
         buttonCollegeNoActive: {
             padding:20,
-            margin:10,
+            width:85,
+            height:85,
             alignItems:"center",
             justifyContent:"center",
             backgroundColor:"red",
@@ -619,8 +621,9 @@ const styles = StyleSheet.create({
             borderRadius:8,
         },
         buttonCollegeNo: {
-            padding:20,
-            margin:10,
+  padding:20,
+            width:85,
+            height:85,
             alignItems:"center",
             justifyContent:"center",
             backgroundColor:"transparent",

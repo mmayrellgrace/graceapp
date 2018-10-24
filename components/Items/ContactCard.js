@@ -3,21 +3,27 @@ import { View, Text, StyleSheet, TouchableOpacity, Image, Button } from 'react-n
 import { MaterialIcons } from '@expo/vector-icons';
 
 const Contact = (props) => (
-    <TouchableOpacity onPress={props.onItemSelected}>
-        <View elevation={5} style={[styles.listItem, {elevation:2, position:'relative',height:180, marginTop:20,}]}>
-            <View elevation={1} style={{position:'absolute',
-                                        marginTop:-20,  
-                                        zIndex:10, 
-                                        elevation:1,                                      
-                                        shadowColor: "#333333",
-                                        shadowOpacity: 0.2,
-                                        shadowRadius: 5,
-                                        shadowOffset: {
-                                        height: 0,
-                                        width: 0
-                                        }}}>
-                <Image style={[styles.profileImage]} resizeMode="cover" source={props.profileImage} />
-            </View>
+    <TouchableOpacity onPress={props.onItemPressed}>
+        <View style={{position:'relative',width:"100%", alignItems:"center",}}>
+        <View style={{alignItems:"center", position:"absolute", top:0, zIndex:100,justifyContent:"center", flexDirection:"row"}}> 
+                <View  style={{
+                                            //marginTop:-20,  
+                                            top:0,
+                                            borderWidth:1,
+                                            borderColor:"#DDD",
+                                            borderRadius:60,
+                                            zIndex:20,                                     
+                                            shadowColor: "#333333",
+                                            shadowOpacity: 0.2,
+                                            shadowRadius: 5,
+                                            shadowOffset: {
+                                            height: 0,
+                                            width: 0
+                                            }}}>
+                    <Image style={[styles.profileImage]} resizeMode="cover" source={props.profileImage} />
+                </View>
+            </View> 
+         <View style={[styles.listItem, {height:180,marginTop:20,}]}>
             <View style={[styles.textContainer]}>
                 <Text style={[styles.listText, {marginBottom:2,marginTop:8,textAlign:'center'}]}>{props.contactName.toUpperCase()}</Text>
                 <Text style={[styles.text, {color:"#999",marginBottom:8,fontSize:13,textAlign:'center'}]}>{props.phone}</Text>
@@ -46,7 +52,9 @@ const Contact = (props) => (
                         </TouchableOpacity>
                     </View>
                 </View>
-            </View>
+            </View>  
+        </View>
+       
         </View>
     </TouchableOpacity>
 );
@@ -59,7 +67,9 @@ const styles = StyleSheet.create({
         backgroundColor:"#FFF",
         flexDirection:"column",
         alignItems:"center",
-        borderRadius:5,
+        borderRadius:6,
+        borderWidth:1,
+        borderColor:"#DDD",
         shadowColor: "#333333",
         shadowOpacity: 0.2,
         shadowRadius: 2,
