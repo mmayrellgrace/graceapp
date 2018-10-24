@@ -9,7 +9,7 @@ class ModalShare extends Component {
             <View style={{flex:1,alignItems:"center",justifyContent:"flex-start",}}>
             <View>
                 <ImageBackground source={require('../../assets/shareBG.png')} resizeMode="cover"
-                            style={{justifyContent:"center",alignItems:"center", height:340,width:400}}>
+                            style={{justifyContent:"center",alignItems:"center", height:340,width:450}}>
                     <View style={{maxWidth:200}}>
                     <Text style={{color:"white", fontSize:25, textAlign:"center"}}>Everyone can use a
                     helping hand</Text>

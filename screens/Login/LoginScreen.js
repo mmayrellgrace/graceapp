@@ -127,13 +127,12 @@ updateInputState = (key, value) => {
         }*/
         return (
             <ScrollView style={{flex:1,backgroundColor:"#35B5AF",}}>
-
-            <View style={[styles.container, {justifyContent:"center",paddingTop:"50%"}]}>
+                <View style={{width:"100%",alignItems:"center",height:200,}}>
+                    <LogoTitle backgroundSize={150} imageSize={120} radius={75} />
+                </View>
+            <View style={[styles.container, {justifyContent:"center",}]}>
                 <View style={{flex:1}}>
                 <KeyboardAvoidingView behavior="padding">
-                <View style={{width:"100%",alignItems:"center"}}>
-       
-                </View>
                 <View style={{width:"100%",flex:1,justifyContent:"center"}}>
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View style={{width:"100%",alignItems:"center",flex:1,}}>
