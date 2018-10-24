@@ -6,9 +6,7 @@ const Contact = (props) => (
     <TouchableOpacity onPress={props.onItemPressed}>
         <View style={{position:'relative',width:"100%", alignItems:"center",}}>
         <View style={{alignItems:"center", position:"absolute", top:0, zIndex:100,justifyContent:"center", flexDirection:"row"}}> 
-                <View  style={{
-                                            //marginTop:-20,  
-                                            top:0,
+                <View  style={{             top:0,
                                             borderWidth:1,
                                             borderColor:"#DDD",
                                             borderRadius:60,

@@ -45,7 +45,7 @@ class Signup extends Component  {
 
     constructor(props) {
         super(props);
-        Dimensions.addEventListener("change", this.updateStyles);
+        //Dimensions.addEventListener("change", this.updateStyles);
     }
     
     loginHandler = () => {

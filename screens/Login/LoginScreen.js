@@ -7,7 +7,7 @@
   import DefaultInput from '../../components/UI/DefaultInput';
   import Heading from '../../components/UI/HeadingText';
   import { MaterialIcons, Ionicons } from '@expo/vector-icons';
-import LogoTitle from '../../components/UI/LogoTitle';
+  import LogoTitle from '../../components/UI/LogoTitle';
   
 
   class LoginScreen extends Component {
@@ -41,7 +41,7 @@ import LogoTitle from '../../components/UI/LogoTitle';
 
     constructor(props) {
         super(props);
-        Dimensions.addEventListener("change", this.updateStyles);
+        //Dimensions.addEventListener("change", this.updateStyles);
     }
     
       // Fetch the token from storage then navigate to our appropriate place
