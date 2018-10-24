@@ -7,9 +7,11 @@ import CustomButton from './../../components/UI/ButtonWithBackground';
 
 class ModalAddContact extends Component {
   state = {
-      email:{
-        value:'',
-      },
+    name:'',
+    email:'',
+    phone:'',
+    relationship:'',
+    warning:null,
   }  
   addContactHandler = () => {
     return;
@@ -27,8 +29,8 @@ class ModalAddContact extends Component {
                 <View style={{flex:1,width:'100%'}}> 
                 <DefaultInput placeholder="Enter Name" label="Name" style={styles.textInput} 
                 placeholderTextColor="#CCC"
-                value={this.state.email.value}
-                //onChangeText={(val) => this.updateInputState('password', val)}
+                value={this.state.name}
+                onChangeText={(val) => val}
                 //touched={this.state.controls.password.touched}
                 
                 />
@@ -40,8 +42,8 @@ class ModalAddContact extends Component {
                 <View style={{flex:1,width:'100%'}}> 
                 <DefaultInput placeholder="Enter Phone" label="Phone" style={styles.textInput} 
                 placeholderTextColor="#CCC"
-                value={this.state.email.value}
-                //onChangeText={(val) => this.updateInputState('password', val)}
+                value={this.state.phone}
+                onChangeText={(val) => val}
                 //touched={this.state.controls.password.touched}
                 
                 />
@@ -53,8 +55,8 @@ class ModalAddContact extends Component {
                 <View style={{flex:1,width:'100%'}}> 
                 <DefaultInput placeholder="Enter Email" label="Email" style={styles.textInput} 
                 placeholderTextColor="#CCC"
-                value={this.state.email.value}
-                //onChangeText={(val) => this.updateInputState('password', val)}
+                value={this.state.email}
+                onChangeText={(val) => val}
                 //touched={this.state.controls.password.touched}
                 
                 />
@@ -66,7 +68,7 @@ class ModalAddContact extends Component {
                 <View style={{flex:1,width:'100%'}}> 
                 <DefaultInput placeholder="Relationship to you" label="Relationship" style={styles.textInput} 
                 placeholderTextColor="#CCC"
-                value={this.state.email.value}
+                value={this.state.relationship}
                 //onChangeText={(val) => this.updateInputState('password', val)}
                 //touched={this.state.controls.password.touched}
                 

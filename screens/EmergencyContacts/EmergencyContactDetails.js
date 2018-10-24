@@ -27,6 +27,8 @@ class EmergencyContactDetails extends Component {
     return;
   }
   render() {
+    const { params } = this.props.navigation.state;
+    let paramContact = params.contact;
       return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-between', backgroundColor:"white", padding:20, }}>
            <View style={{alignItems:"center",marginTop:25,marginBottom:4,borderBottomWidth:1, borderBottomColor:"#CCC", padding:5, margin:5,width:"100%"}}>
@@ -36,9 +38,9 @@ class EmergencyContactDetails extends Component {
            <View style={{flexDirection:"row", alignItems:"center", marginTop:15}}> 
                 <MaterialIcons name="person" size={28} color="#CCC" style={{marginRight:10,marginTop:10}} />   
                 <View style={{flex:1,width:'100%'}}> 
-                <DefaultInput placeholder="Enter Name" label="Name" style={styles.textInput} 
+                <DefaultInput placeholder={paramContact.name} label="Name" style={styles.textInput} 
                 placeholderTextColor="#CCC"
-                value={this.state.email.value}
+                value={paramContact.name}
                 //onChangeText={(val) => this.updateInputState('password', val)}
                 //touched={this.state.controls.password.touched}
                 
@@ -49,9 +51,9 @@ class EmergencyContactDetails extends Component {
             <View style={{flexDirection:"row", alignItems:"center", marginTop:15}}> 
                 <MaterialIcons name="phone" size={28} color="#CCC" style={{marginRight:10,marginTop:10}} />   
                 <View style={{flex:1,width:'100%'}}> 
-                <DefaultInput placeholder="Enter Phone" label="Phone" style={styles.textInput} 
+                <DefaultInput placeholder={paramContact.phone} label="Phone" style={styles.textInput} 
                 placeholderTextColor="#CCC"
-                value={this.state.email.value}
+                value={paramContact.phone}
                 //onChangeText={(val) => this.updateInputState('password', val)}
                 //touched={this.state.controls.password.touched}
                 
@@ -62,9 +64,9 @@ class EmergencyContactDetails extends Component {
             <View style={{flexDirection:"row", alignItems:"center", marginTop:15}}> 
                 <MaterialIcons name="email" size={28} color="#CCC" style={{marginRight:10,marginTop:10}} />   
                 <View style={{flex:1,width:'100%'}}> 
-                <DefaultInput placeholder="Enter Email" label="Email" style={styles.textInput} 
+                <DefaultInput placeholder={paramContact.email} label="Email" style={styles.textInput} 
                 placeholderTextColor="#CCC"
-                value={this.state.email.value}
+                value={paramContact.email}
                 //onChangeText={(val) => this.updateInputState('password', val)}
                 //touched={this.state.controls.password.touched}
                 

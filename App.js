@@ -14,9 +14,17 @@ import ModalPhone from './screens/Modals/ModalPhone';
 import ModalAddContact from './screens/Modals/ModalAddContact';
 import LogoTitle from './components/UI/LogoTitle';
 import ModalAlert from './screens/Modals/ModalAlert';
+import DisclaimerScreen from './screens/Splash/Disclaimer';
 
 const AppStack = createStackNavigator({ Main: MainScreen, Emergency: EmergencyContacts, EmergencyDetails: EmergencyContactDetails });
-const RegisterStack = createStackNavigator({other: MainScreen});
+const SplashStack = createStackNavigator({Splash: DisclaimerScreen},
+    {navigationOptions: {
+      headerMode:null,
+      headerStyle: {
+        backgroundColor: '#602A7A',
+      },
+    }}
+  );
 const AuthStack = createStackNavigator(
     { Login:LoginScreen, 
       Signup: SignupScreen, 
@@ -65,9 +73,9 @@ export default createSwitchNavigator(
     AuthLoading: AuthLoadingScreen,
     App: RootStack,
     Auth: AuthStack,
-    other: RegisterStack,
+    Disclaimer: SplashStack,
   },
   {
-    initialRouteName: 'Auth',
+    initialRouteName: 'Disclaimer',
   },
 );

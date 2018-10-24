@@ -8,8 +8,8 @@ import Heading from '../../components/UI/HeadingText';
 import EmergencyContactDetails from './EmergencyContactDetails';
 import LogoTitle from '../../components/UI/LogoTitle';
 
-class EmergencyContacts extends Component {
 
+class EmergencyContacts extends Component {
 
     static navigationOptions = {
         title:"Emergency Contacts",
@@ -24,6 +24,10 @@ class EmergencyContacts extends Component {
         contactsLoaded: false,
         removeAnim: new Animated.Value(1),
         addAnim: new Animated.Value(0),
+        name:'',
+        email:'',
+        phone:'',
+        warning:null,
         contacts: [
             {key:'1', name: 'John Doe', 
             profileImage:require('../../assets/profile/guyimage.png'),  
@@ -41,7 +45,6 @@ class EmergencyContacts extends Component {
             relationship:"relative"}
             ]
     };
-
     constructor (props) {
         super(props);
     }
@@ -68,7 +71,7 @@ class EmergencyContacts extends Component {
     }
 
     itemSelectedHandler = key => {
-        const selectedContact = this.state.contacts.filter(item => {
+        const selectedContact = this.state.contacts.find(item => {
             return item.key === key;
         });
         
@@ -93,8 +96,33 @@ class EmergencyContacts extends Component {
       }
 
       openModalAddContact = () => {
-        this.props.navigation.navigate('ModalAddContact');
+        this.props.navigation.navigate('ModalAddContact', {
+            'addNewContact': (item) => this.addNewContact(item)
+        });
     }
+
+    addNewContact = () => {
+        e.preventDefault();
+        if (this.state.name !== "" && this.state.email !== "" && this.state.phone !== '') {
+          const newContact = {
+            key: Math.floor((Math.random() * 1000000) + 1),
+            name: this.state.name,
+            email: this.state.email,
+            phone: this.state.phone
+          };
+          this.setState(prevState => ({
+            contacts: [newContact, ...prevState.contacts],
+            name: "",
+            email:"",
+            phone:""
+          }));
+        } else {
+            this.setState({
+                warning:"please fill out name, email, phone before adding"
+            });
+        }
+        this.props.navigation.goBack();
+      }
 
 
     render () {
