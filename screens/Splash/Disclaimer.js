@@ -14,8 +14,8 @@ class Disclaimer extends Component {
                 </View>
              <View style={{ paddingLeft:30,paddingTop:20,paddingRight:30}}>
                <HeadingText heading="Disclaimer" style={{color:"white"}}/>
-               <Text style={{textAlign:"left"}}>
-                    Mauris non tempor quam, et lacinia sapien. Mauris accumsan 
+               <Text style={{textAlign:"left", fontSize:13}}>
+                    Legal unum Mauris non tempor quam, et lacinia sapien. Mauris accumsan 
                    eros eget libero posuere vulputate. Etiam elit elit, elementum sed 
                    varius at, adipiscing vitae est. Sed nec felis pellentesque, lacinia 
                    dui sed, ultricies sapien. Pellentesque orci lectus, consectetur 
@@ -36,7 +36,7 @@ class Disclaimer extends Component {
                         alignItems:"center", width:"100%"}}>
                 <TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('Auth')} >
                     <View>
-                    <Text style={{fontSize:20,textAlign:"center"}}>Agree and Continue</Text>
+                    <Text style={{fontSize:18,textAlign:"center"}}>Agree and Continue</Text>
                     </View>
                 </TouchableWithoutFeedback>
                 <View style={styles.btnActionMenu}>

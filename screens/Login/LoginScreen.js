@@ -257,7 +257,7 @@ updateInputState = (key, value) => {
                                     buttonText={{textDecorationLine:"underline",textDecorationStyle:"solid",textDecorationColor:"white"}}
                                     color="white" 
                                     size={30}
-                                    name="logo-linkedin" 
+                                    name="logo-google" 
                                     onPress={this.loginHandler}
                             />
                         </View>

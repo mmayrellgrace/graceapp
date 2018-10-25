@@ -1,12 +1,30 @@
 import React, { Component } from 'react';
 import { Image, View, Text, StyleSheet, TouchableOpacity, Animated, 
-    KeyboardAvoidingView, Keyboard, ScrollView, Dimensions, Linking } from 'react-native';
+    KeyboardAvoidingView, Button, Keyboard, ScrollView, Dimensions, Linking } from 'react-native';
 import Heading from '../../components/UI/HeadingText';
 import ActionButton from '../../components/UI/ActionButtonCircle';
 import MainAlertButton from '../../components/UI/MainAlertButtonCircle';
 import CustomButton from '../../components/UI/ButtonWithIcon';
 import LogoTitle from '../../components/UI/LogoTitle';
+class Logout extends Component{
+    state: {}
+    constructor(props){
+        super(props);
+    }
+    onLogout = () => {
+        this.props.navigation.navigate('Auth');
+    }
 
+    render() {
+        return (
+            <CustomButton
+              onPress={this.onLogout}
+              icon="refresh"
+              color="#fff"
+            />
+        )
+    }
+}
 class MainScreen extends Component {
     static navigationOptions = {
         headerTitle: <LogoTitle backgroundSize={80} imageSize={65} radius={40} />,
@@ -113,6 +131,16 @@ class MainScreen extends Component {
                     
                     </View>
                 </View>
+                <View style={styles.btnAlertLogout}>
+                    <View style={{flexDirection:"row",left:0}}>
+                    <CustomButton 
+                        icon="arrow-back"
+                        color="#DDD" 
+                        background="transparent"
+                        onPress={() => this.props.navigation.navigate('Auth')}/>
+                    
+                    </View>
+                </View>
                 <View style={{alignItems:"center",marginBottom:4,}}>
                     <Heading heading={"In Case of Emergeny, \nPress Alert Button"} style={{textAlign:"center"}} />
                 </View>
@@ -125,6 +153,7 @@ class MainScreen extends Component {
                                 disabled={this.state.disableAlert}
                             />
                  </View>
+                 
             <View>
               
             </View>
@@ -190,10 +219,17 @@ const styles = StyleSheet.create({
         marginLeft:0,
         left: 0, 
         top: 0, 
-        paddingTop:0,
-
-       
+        paddingTop:0,      
+      },
+      btnAlertLogout: {
+        position:"absolute",
+        zIndex:10, 
+        marginLeft:0,
+        left: 0, 
+        bottom: 0, 
+        paddingTop:10,      
       }
+
 });
 
 export default MainScreen;

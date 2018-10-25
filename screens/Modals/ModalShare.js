@@ -5,7 +5,7 @@ import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 class ModalShare extends Component {
     render() {
       return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent:"space-between",paddingTop:35,backgroundColor:"#b676c3"  }}>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent:"space-between",paddingTop:23,backgroundColor:"#b676c3"  }}>
             <View style={{flex:1,alignItems:"center",justifyContent:"flex-start",}}>
             <View>
                 <ImageBackground source={require('../../assets/shareBG.png')} resizeMode="cover"
@@ -44,7 +44,7 @@ class ModalShare extends Component {
                                 <Ionicons 
                                         color="white" 
                                         size={30}
-                                        name="logo-linkedin" 
+                                        name="logo-google" 
                                 />
                             </TouchableOpacity>
                         </View>

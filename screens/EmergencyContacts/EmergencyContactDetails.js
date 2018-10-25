@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, Text, Button, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { View, Image, Text, Button, TouchableOpacity, KeyboardAvoidingView, StyleSheet, ScrollView } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import DefaultInput from './../../components/UI/DefaultInput';
 import HeadingText from './../../components/UI/HeadingText';
@@ -19,29 +19,46 @@ class EmergencyContactDetails extends Component {
       };
 
   state = {
-      email:{
-        value:'',
+      contact:{
+        name:'',
+        email:'',
+        phone:'',
+        relationship:'',
+        image:'',
       },
-  }  
-  addContactHandler = () => {
-    return;
-  }
+  } 
+  
+  updateInputState = (key, value) => {
+    
+    this.setState(prevState => {
+        return {
+            contact: {
+                [key]: value
+                }
+        };
+    });
+}
+
+updateContactHandler = () => {
+    this.props.navigation.goBack();
+}
+
   render() {
     const { params } = this.props.navigation.state;
     let paramContact = params.contact;
       return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-between', backgroundColor:"white", padding:20, }}>
-           <View style={{alignItems:"center",marginTop:25,marginBottom:4,borderBottomWidth:1, borderBottomColor:"#CCC", padding:5, margin:5,width:"100%"}}>
+        <KeyboardAvoidingView style={{ flex: 1, alignItems: 'center', justifyContent: 'space-between', backgroundColor:"white", padding:20, }} behavior="padding" >
+          <ScrollView style={{width:"100%"}}>
+           <View style={{alignItems:"center",marginBottom:4,borderBottomWidth:1, borderBottomColor:"#CCC", width:"100%"}}>
                <HeadingText heading={"Update Details"} style={{textAlign:"center"}} />
            </View>
-           <ScrollView style={{width:"100%"}}>
            <View style={{flexDirection:"row", alignItems:"center", marginTop:15}}> 
                 <MaterialIcons name="person" size={28} color="#CCC" style={{marginRight:10,marginTop:10}} />   
                 <View style={{flex:1,width:'100%'}}> 
                 <DefaultInput placeholder={paramContact.name} label="Name" style={styles.textInput} 
                 placeholderTextColor="#CCC"
-                value={paramContact.name}
-                //onChangeText={(val) => this.updateInputState('password', val)}
+                value={this.state.contact.name}
+                onChangeText={(val) => this.updateInputState('name', val)}
                 //touched={this.state.controls.password.touched}
                 
                 />
@@ -53,8 +70,8 @@ class EmergencyContactDetails extends Component {
                 <View style={{flex:1,width:'100%'}}> 
                 <DefaultInput placeholder={paramContact.phone} label="Phone" style={styles.textInput} 
                 placeholderTextColor="#CCC"
-                value={paramContact.phone}
-                //onChangeText={(val) => this.updateInputState('password', val)}
+                value={this.state.contact.phone}
+                onChangeText={(val) => this.updateInputState('phone', val)}
                 //touched={this.state.controls.password.touched}
                 
                 />
@@ -66,8 +83,8 @@ class EmergencyContactDetails extends Component {
                 <View style={{flex:1,width:'100%'}}> 
                 <DefaultInput placeholder={paramContact.email} label="Email" style={styles.textInput} 
                 placeholderTextColor="#CCC"
-                value={paramContact.email}
-                //onChangeText={(val) => this.updateInputState('password', val)}
+                value={this.state.contact.email}
+                onChangeText={(val) => this.updateInputState('email', val)}
                 //touched={this.state.controls.password.touched}
                 
                 />
@@ -79,8 +96,8 @@ class EmergencyContactDetails extends Component {
                 <View style={{flex:1,width:'100%'}}> 
                 <DefaultInput placeholder="Relationship to you" label="Relationship" style={styles.textInput} 
                 placeholderTextColor="#CCC"
-                value={this.state.email.value}
-                //onChangeText={(val) => this.updateInputState('password', val)}
+                value={this.state.contact.relationship}
+                onChangeText={(val) => this.updateInputState('relationship', val)}
                 //touched={this.state.controls.password.touched}
                 
                 />
@@ -88,14 +105,13 @@ class EmergencyContactDetails extends Component {
                 </View>
             </View>
             
-                    </ScrollView>
                     <View style={[styles.buttons, {flex:1, width:"100%",marginTop:25, minWidth:250}]}>
                         <CustomButton 
                                 style={styles.buttonPadding}
                                 color="white" 
                                 size={14}
                                 background="#602A7A" 
-                                onPress={this.addContactHandler}
+                                onPress={this.updateContactHandler}
                                 title="Update Emergency Contact"
                                /*disabled={
                                     !this.state.controls.email.valid ||
@@ -104,7 +120,8 @@ class EmergencyContactDetails extends Component {
                                 }*/
                         />
                     </View>
-        </View>
+                    </ScrollView>
+        </KeyboardAvoidingView>
       );
     }
   }

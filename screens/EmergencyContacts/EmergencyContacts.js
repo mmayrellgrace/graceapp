@@ -27,6 +27,8 @@ class EmergencyContacts extends Component {
         name:'',
         email:'',
         phone:'',
+        image:'',
+        relatioship:'',
         warning:null,
         contacts: [
             {key:'1', name: 'John Doe', 
@@ -97,18 +99,19 @@ class EmergencyContacts extends Component {
 
       openModalAddContact = () => {
         this.props.navigation.navigate('ModalAddContact', {
-            'addNewContact': (item) => this.addNewContact(item)
+            'addNewContact': this.addNewContact.bind(this)
         });
     }
 
     addNewContact = () => {
-        e.preventDefault();
         if (this.state.name !== "" && this.state.email !== "" && this.state.phone !== '') {
           const newContact = {
             key: Math.floor((Math.random() * 1000000) + 1),
             name: this.state.name,
             email: this.state.email,
-            phone: this.state.phone
+            phone: this.state.phone,
+            realtionship: this.state.relationship,
+            image: require('../../assets/profile/guyimage2.png')
           };
           this.setState(prevState => ({
             contacts: [newContact, ...prevState.contacts],
@@ -121,7 +124,6 @@ class EmergencyContacts extends Component {
                 warning:"please fill out name, email, phone before adding"
             });
         }
-        this.props.navigation.goBack();
       }
 
 
@@ -131,11 +133,9 @@ class EmergencyContacts extends Component {
         return (
  
             <View style={styles.listContainer}>
-                <ScrollView>
                     <View style={styles.list}>
                         <ContactList contacts={this.state.contacts} onItemSelected={this.itemSelectedHandler} onItemDeleted={this.itemDeletedHandler} />
                     </View>
-                </ScrollView>  
                 <View style={styles.btnActionMenu}>
                     <ActionButton elevation={5} 
                                 size={25}

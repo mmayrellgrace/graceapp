@@ -8,7 +8,7 @@ class ModalAlert extends Component {
       return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <Text style={{ fontSize: 30 }}>Alert Sent!</Text>
-          <Text style={{ fontSize: 20, marginTop:20,marginBottom:20 }}>Add example message here</Text>
+
           <CustomButton
             background="white"
             style={{borderWidth:2,borderColor:"#CCC"}}

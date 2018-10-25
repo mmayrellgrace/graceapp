@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, Text, Button, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { View, Image, Text, Button, TouchableOpacity, KeyboardAvoidingView, StyleSheet, ScrollView } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import DefaultInput from './../../components/UI/DefaultInput';
 import HeadingText from './../../components/UI/HeadingText';
@@ -7,18 +7,28 @@ import CustomButton from './../../components/UI/ButtonWithBackground';
 
 class ModalAddContact extends Component {
   state = {
-    name:'',
-    email:'',
-    phone:'',
-    relationship:'',
+      name:'',
+      email:'',
+      phone:'',
+      relationship:'',
     warning:null,
   }  
-  addContactHandler = () => {
-    return;
-  }
+
+  updateInputState = (key, value) => {
+    
+    this.setState(prevState => {
+        return {
+                [key]: value
+        };
+    });
+}
+
   render() {
+    const { params } = this.props.navigation.state;
+    let addContact = params.addNewContact;
       return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-between', backgroundColor:"white", padding:30, }}>
+        <KeyboardAvoidingView style={{ flex: 1, alignItems: 'center', justifyContent: 'space-between', backgroundColor:"white", padding:30, }} behavior="padding">
+          <ScrollView style={{width:"100%", flex:1}}>
            <View style={{flex:1, width:"100%"}}>
           <View style={{alignItems:"center",marginTop:25,marginBottom:4,}}>
                <HeadingText heading={"Add Emergency Contact"} style={{textAlign:"center"}} />
@@ -30,8 +40,7 @@ class ModalAddContact extends Component {
                 <DefaultInput placeholder="Enter Name" label="Name" style={styles.textInput} 
                 placeholderTextColor="#CCC"
                 value={this.state.name}
-                onChangeText={(val) => val}
-                //touched={this.state.controls.password.touched}
+                onChangeText={(val) => this.updateInputState('name', val)}
                 
                 />
                   
@@ -43,8 +52,7 @@ class ModalAddContact extends Component {
                 <DefaultInput placeholder="Enter Phone" label="Phone" style={styles.textInput} 
                 placeholderTextColor="#CCC"
                 value={this.state.phone}
-                onChangeText={(val) => val}
-                //touched={this.state.controls.password.touched}
+                onChangeText={(val) => this.updateInputState('phone', val)}
                 
                 />
                   
@@ -56,8 +64,7 @@ class ModalAddContact extends Component {
                 <DefaultInput placeholder="Enter Email" label="Email" style={styles.textInput} 
                 placeholderTextColor="#CCC"
                 value={this.state.email}
-                onChangeText={(val) => val}
-                //touched={this.state.controls.password.touched}
+                onChangeText={(val) => this.updateInputState('email', val)}
                 
                 />
                   
@@ -69,20 +76,19 @@ class ModalAddContact extends Component {
                 <DefaultInput placeholder="Relationship to you" label="Relationship" style={styles.textInput} 
                 placeholderTextColor="#CCC"
                 value={this.state.relationship}
-                //onChangeText={(val) => this.updateInputState('password', val)}
-                //touched={this.state.controls.password.touched}
+                onChangeText={(val) => this.updateInputState('relationship', val)}
                 
                 />
                   
                 </View>
             </View>
-            <View style={[styles.buttons, {flex:1, marginTop:25, minWidth:250}]}>
+            <View style={[styles.buttons, {flex:1, marginTop:25, marginBottom:30, minWidth:250}]}>
                         <CustomButton 
                                 style={styles.buttonPadding}
                                 color="white" 
                                 size={14}
                                 background="#602A7A" 
-                                onPress={this.addContactHandler}
+                                onPress={() => this.props.navigation.goBack()}
                                 title="Add Emergency Contact"
                                /*disabled={
                                     !this.state.controls.email.valid ||
@@ -93,9 +99,9 @@ class ModalAddContact extends Component {
                     </View>
                 </ScrollView>
               </View>
-            <View>
+            <View style={{alignItems:"center"}}>
               <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
-                        <View style={{alignItems:"center",justifyContent:"flex-end",borderRadius:20,borderWidth:1,borderColor:"grey", padding:5}}>
+                        <View style={{alignItems:"center", maxWidth:150, justifyContent:"center",borderRadius:20,borderWidth:1,borderColor:"grey", padding:5}}>
                         <View style={[styles.buttons, {flexDirection:"row",alignItems:"center"}]}>
                             <MaterialIcons 
                                     color="grey" 
@@ -107,8 +113,8 @@ class ModalAddContact extends Component {
                         </View>
               </TouchableOpacity> 
           </View>
- 
-        </View>
+ </ScrollView>
+        </KeyboardAvoidingView>
       );
     }
   }

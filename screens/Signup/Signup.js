@@ -18,28 +18,18 @@ class Signup extends Component  {
         collegeBoolean:null,
         collegeDorm:null,
         viewMode: Dimensions.get('window').height > 400 ? "portrait" : "landscape",
-        controls: {
-            email: {
-                value: '',
-                valid: false,
-                validationRules: {
-                    isEmail:true,
-                }
-            },
-            password: {
-                value: '',
-                valid: false,
-                validationRules: {
-                    minLength:6,
-                }
-            },
-            confirmPassword: {
-                value: '',
-                valid: false,
-                validationRules: {
-                    equalTo:'password',
-                }
-            },
+        user: {
+            name: '',
+            email: '',
+            password: '',
+            confirmPassword: '',
+            collegeName: '',
+            dormName: '',
+            streetAddress: '',
+            city:'',
+            stateUS: '',
+            password: '',
+            confirmPassword: '',
         }
     }
 
@@ -166,46 +156,13 @@ class Signup extends Component  {
     }  
 
     updateInputState = (key, value) => {
-        let connectedValue = {};
-        if(this.state.controls[key].validationRules.equalTo) {
-            const equalControl = this.state.controls[key].validationRules.equalTo;
-            const equalValue = this.state.controls[equalControl].value;
-    
-            connectedValue = {
-                ...connectedValue,
-                equalTo: equalValue
-            };
-        }
-        if(key === 'password') {
-            connectedValue = {
-                ...connectedValue,
-                equalTo: value
-            };
-    
-        };
-    
     
         this.setState(prevState => {
             return {
-                controls: {
-                    ...prevState.controls,
-                    /*confirmPassword: {
-                        ...prevState.controls.confirmPassword,
-                        valid: key === 'password' ? validate(
-                            prevState.controls.confirmPassword.value, 
-                            prevState.controls.confirmPassword.validationRules, 
-                            connectedValue
-                        ) : prevState.controls.confirmPassword.valid
-                    },*/
-                    [key]: {
-                        ...prevState.controls[key],
-                        value: value,
-                        //valid: validate(value, prevState.controls[key].validationRules, connectedValue),
-                        touched: true,
+                user: {
+                    key: value,
                     }
-                },
-               
-            };
+                }
         });
     }
 
@@ -233,9 +190,8 @@ class Signup extends Component  {
                 <View style={{flex:1,width:'100%'}}> 
                 <DefaultInput placeholder="Enter Name" label="Name" style={styles.textInput} 
                 placeholderTextColor="#CCC"
-                value={this.state.email}
-                onChangeText={(val) => this.updateInputState('email', val)}
-                touched={this.state.controls.password.touched}
+                value={this.state.user.name}
+                onChangeText={(val) => this.updateInputState('name', val)}
                 />
                   
                 </View>
@@ -245,9 +201,8 @@ class Signup extends Component  {
                 <View style={{flex:1,width:'100%'}}> 
                 <DefaultInput placeholder="Enter Email Address" label="Email Address" style={styles.textInput} 
                 placeholderTextColor="#CCC"
-                value={this.state.email}
-                onChangeText={(val) => this.updateInputState('password', val)}
-                touched={this.state.controls.password.touched}
+                value={this.state.user.email}
+                onChangeText={(val) => this.updateInputState('email', val)}
                 />
                   
                 </View>
@@ -257,9 +212,8 @@ class Signup extends Component  {
                 <View style={{flex:1,width:'100%'}}> 
                 <DefaultInput placeholder="Enter Password" label="Password" style={styles.textInput} 
                 placeholderTextColor="#CCC"
-                value={this.state.email}
+                value={this.state.user.password}
                 onChangeText={(val) => this.updateInputState('password', val)}
-                touched={this.state.controls.password.touched}
                 secureTextEntry
                 />
                   
@@ -271,9 +225,8 @@ class Signup extends Component  {
                 <View style={{flex:1,width:'100%'}}> 
                 <DefaultInput placeholder="Confirm Password" label="Confirm Password" style={styles.textInput} 
                 placeholderTextColor="#CCC"
-                value={this.state.email}
-                onChangeText={(val) => this.updateInputState('password', val)}
-                touched={this.state.controls.password.touched}
+                value={this.state.user.confirmPassword}
+                onChangeText={(val) => this.updateInputState('confirmPassword', val)}
                 secureTextEntry
                 />
                   
@@ -297,9 +250,9 @@ class Signup extends Component  {
                                 onPress={this.onButtonCollegeToggle}
                                 title="Y"
                                /*disabled={
-                                    !this.state.controls.email.valid ||
-                                    !this.state.controls.password.valid ||
-                                    !this.state.controls.confirmPassword.valid
+                                    !this.state.user.email.valid ||
+                                    !this.state.user.password.valid ||
+                                    !this.state.user.confirmPassword.valid
                                 }*/
                         />
                         </View>
@@ -314,9 +267,9 @@ class Signup extends Component  {
                                 onPress={this.onButtonCollegeToggleNo}
                                 title="N"
                                /*disabled={
-                                    !this.state.controls.email.valid ||
-                                    !this.state.controls.password.valid ||
-                                    !this.state.controls.confirmPassword.valid
+                                    !this.state.user.email.valid ||
+                                    !this.state.user.password.valid ||
+                                    !this.state.user.confirmPassword.valid
                                 }*/
                         />
                         </View>
@@ -339,9 +292,9 @@ class Signup extends Component  {
                                 onPress={this.onButtonCollegeDormToggle}
                                 title="Y"
                                /*disabled={
-                                    !this.state.controls.email.valid ||
-                                    !this.state.controls.password.valid ||
-                                    !this.state.controls.confirmPassword.valid
+                                    !this.state.user.email.valid ||
+                                    !this.state.user.password.valid ||
+                                    !this.state.user.confirmPassword.valid
                                 }*/
                         />
                         </View>
@@ -356,9 +309,9 @@ class Signup extends Component  {
                                 onPress={this.onButtonCollegeDormToggleNo}
                                 title="N"
                                /*disabled={
-                                    !this.state.controls.email.valid ||
-                                    !this.state.controls.password.valid ||
-                                    !this.state.controls.confirmPassword.valid
+                                    !this.state.user.email.valid ||
+                                    !this.state.user.password.valid ||
+                                    !this.state.user.confirmPassword.valid
                                 }*/
                         />
                         </View>
@@ -379,7 +332,8 @@ class Signup extends Component  {
                                         <View style={{flex:1,width:'100%'}}> 
                                         <DefaultInput 
                                         placeholder="Search Universities" 
-
+                                        value={this.state.user.collegeName}
+                                        onChangeText={(val) => this.updateInputState('collegeName', val)}
                                         style={styles.textInputNone} 
                                         background="transparent"
                                         placeholderTextColor="#CCC"
@@ -393,9 +347,8 @@ class Signup extends Component  {
             <View style={{flex:1,width:'100%'}}> 
             <DefaultInput placeholder="Enter Street Address" label="Street Address" style={styles.textInput} 
             placeholderTextColor="#CCC"
-            value={this.state.email}
-            onChangeText={(val) => this.updateInputState('email', val)}
-            touched={this.state.controls.password.touched}
+            value={this.state.user.streetAddress}
+            onChangeText={(val) => this.updateInputState('streetAddress', val)}
             />
               
             </View>
@@ -405,9 +358,8 @@ class Signup extends Component  {
             <View style={{flex:1,width:'100%'}}> 
             <DefaultInput placeholder="Enter City" label="City" style={styles.textInput} 
             placeholderTextColor="#CCC"
-            value={this.state.email}
-            onChangeText={(val) => this.updateInputState('password', val)}
-            touched={this.state.controls.password.touched}
+            value={this.state.user.city}
+            onChangeText={(val) => this.updateInputState('city', val)}
             />
               
             </View>
@@ -417,10 +369,8 @@ class Signup extends Component  {
             <View style={{flex:1,width:'100%'}}> 
             <DefaultInput placeholder="Enter State" label="State" style={styles.textInput} 
             placeholderTextColor="#CCC"
-            value={this.state.email}
-            onChangeText={(val) => this.updateInputState('password', val)}
-            touched={this.state.controls.password.touched}
-            secureTextEntry
+            value={this.state.user.stateUS}
+            onChangeText={(val) => this.updateInputState('stateUS', val)}
             />
               
             </View>
@@ -434,9 +384,8 @@ class Signup extends Component  {
             <View style={{flex:1,width:'100%'}}> 
             <DefaultInput placeholder="Enter Dorm Name" label="Dorm Name" style={styles.textInput} 
             placeholderTextColor="#CCC"
-            value={this.state.email}
-            onChangeText={(val) => this.updateInputState('email', val)}
-            touched={this.state.controls.password.touched}
+            value={this.state.user.dormName}
+            onChangeText={(val) => this.updateInputState('dormName', val)}
             />
               
             </View>
@@ -446,9 +395,8 @@ class Signup extends Component  {
             <View style={{flex:1,width:'100%'}}> 
             <DefaultInput placeholder="Enter Street Address" label="Street Address" style={styles.textInput} 
             placeholderTextColor="#CCC"
-            value={this.state.email}
-            onChangeText={(val) => this.updateInputState('email', val)}
-            touched={this.state.controls.password.touched}
+            value={this.state.user.streetAddress}
+            onChangeText={(val) => this.updateInputState('streetAddress', val)}
             />
               
             </View>
@@ -458,9 +406,8 @@ class Signup extends Component  {
             <View style={{flex:1,width:'100%'}}> 
             <DefaultInput placeholder="Enter City" label="City" style={styles.textInput} 
             placeholderTextColor="#CCC"
-            value={this.state.email}
-            onChangeText={(val) => this.updateInputState('password', val)}
-            touched={this.state.controls.password.touched}
+            value={this.state.user.city}
+            onChangeText={(val) => this.updateInputState('city', val)}
             />
               
             </View>
@@ -470,10 +417,8 @@ class Signup extends Component  {
             <View style={{flex:1,width:'100%'}}> 
             <DefaultInput placeholder="Enter State" label="State" style={styles.textInput} 
             placeholderTextColor="#CCC"
-            value={this.state.email}
-            onChangeText={(val) => this.updateInputState('password', val)}
-            touched={this.state.controls.password.touched}
-            secureTextEntry
+            value={this.state.user.stateUS}
+            onChangeText={(val) => this.updateInputState('stateUS', val)}
             />
               
             </View>
@@ -486,9 +431,8 @@ class Signup extends Component  {
             <View style={{flex:1,width:'100%'}}> 
             <DefaultInput placeholder="Enter Street Address" label="Street Address" style={styles.textInput} 
             placeholderTextColor="#CCC"
-            value={this.state.email}
-            onChangeText={(val) => this.updateInputState('email', val)}
-            touched={this.state.controls.password.touched}
+            value={this.state.user.streetAddress}
+            onChangeText={(val) => this.updateInputState('streetAddress', val)}
             />
               
             </View>
@@ -498,9 +442,8 @@ class Signup extends Component  {
             <View style={{flex:1,width:'100%'}}> 
             <DefaultInput placeholder="Enter City" label="City" style={styles.textInput} 
             placeholderTextColor="#CCC"
-            value={this.state.email}
-            onChangeText={(val) => this.updateInputState('password', val)}
-            touched={this.state.controls.password.touched}
+            value={this.state.user.city}
+            onChangeText={(val) => this.updateInputState('city', val)}
             />
               
             </View>
@@ -510,10 +453,8 @@ class Signup extends Component  {
             <View style={{flex:1,width:'100%'}}> 
             <DefaultInput placeholder="Enter State" label="State" style={styles.textInput} 
             placeholderTextColor="#CCC"
-            value={this.state.email}
-            onChangeText={(val) => this.updateInputState('password', val)}
-            touched={this.state.controls.password.touched}
-            secureTextEntry
+            value={this.state.user.stateUS}
+            onChangeText={(val) => this.updateInputState('stateUS', val)}
             />
               
             </View>
@@ -523,7 +464,8 @@ class Signup extends Component  {
 
         return (
             
-        <View style={{padding:20,paddingTop:10, flex:1}}>
+        
+                    <KeyboardAvoidingView  style={{padding:20,paddingTop:10, paddingBottom:40,marginBottom:30,flex:1}} behavior="padding">
                         <ScrollView style={{width:"100%"}}>
             <Text style={{color:"#BBB",fontSize:13,marginTop:15,marginLeft:20,}}>{this.state.percent} Progress</Text>
             <View style={{margin:10,marginBottom:20,marginTop:5,padding:20, borderColor:"#CCC", borderWidth:1, 
@@ -534,13 +476,10 @@ class Signup extends Component  {
                 </View>
             </View>
             <View style={{ borderBottomWidth:1, borderBottomColor:"#CCC"}}></View>
-            <KeyboardAvoidingView behavior="padding">
-
             {mainContent}             
             {collegeDependency}
-
-            </KeyboardAvoidingView>
             </ScrollView>
+
             {actionButtonLeft}
              <View style={styles.btnActionMenu}>
                 <ActionButton elevation={5} 
@@ -553,7 +492,7 @@ class Signup extends Component  {
                                         this.state.step === "three" && this.state.collegeDorm === null ? true : false}
                                 onPress={this.nextStepHandler} />
             </View>
-        </View>
+            </KeyboardAvoidingView>
     )};
         
 };
